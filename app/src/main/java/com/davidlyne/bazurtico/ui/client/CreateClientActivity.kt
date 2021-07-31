@@ -3,6 +3,7 @@ package com.davidlyne.bazurtico.ui.client
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.davidlyne.bazurtico.MainActivity
 import com.davidlyne.bazurtico.R
 import com.davidlyne.bazurtico.data.local.ClientDataClass
@@ -15,10 +16,15 @@ class CreateClientActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_client)
         buttonCreateClient.setOnClickListener {
             //Save on database
-            val bazurticoClient =  ClientDataClass(1,"ana","3144468866")
-            val databaseInstance = TotalizerDatabase.getInstance(this)!!.getClientDAO().insertClient(bazurticoClient)
-            //Redirect to main activity
-            this@CreateClientActivity.startActivity(Intent(this@CreateClientActivity, MainActivity::class.java))
+            val name = editTextTextPersonName.text
+            if(name.length > 0){
+                val bazurticoClient =  ClientDataClass(1,""+name,"3144468866")
+                val databaseInstance = TotalizerDatabase.getInstance(this)!!.getClientDAO().insertClient(bazurticoClient)
+                //Redirect to main activity
+                this@CreateClientActivity.startActivity(Intent(this@CreateClientActivity, MainActivity::class.java))
+            }else{
+                Toast.makeText(applicationContext, "Faltan Datos Importantes", Toast.LENGTH_LONG).show()
+            }
         }
     }
 }
