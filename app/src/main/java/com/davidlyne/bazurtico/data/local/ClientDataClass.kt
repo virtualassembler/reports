@@ -18,10 +18,8 @@ data class ClientDataClass(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
         var id: Int,
-        @SerializedName("idTeam")
-        var idTeam: String?,
         @SerializedName("nameClient")
         var nameClient: String?,
-        @SerializedName("strStadium")
-        var strStadium: String?
+        @SerializedName("telClient")
+        var telClient: String?
 )

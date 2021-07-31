@@ -17,14 +17,16 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.davidlyne.bazurtico.data.local.ClientDao
 import com.davidlyne.bazurtico.data.local.TotalizerDatabase
 import com.davidlyne.bazurtico.data.local.VegetableDao
-import com.davidlyne.bazurtico.ui.client.ActivityCreateClient
+import com.davidlyne.bazurtico.ui.client.CreateClientActivity
 
 class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val movieDatabase: VegetableDao get() = TotalizerDatabase.getInstance(this)!!.getVegetableDAO()
+    private val clientList: ClientDao get() = TotalizerDatabase.getInstance(this)!!.getClientDAO()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,12 +53,14 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
         Log.e("#001",""+movieDatabase.getVegetableList())
+        Log.e("#002","eee"+clientList.getClientList())
+        Log.e("#003","test")
     }
 
     //ADDED
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_home -> this@MainActivity.startActivity(Intent(this@MainActivity, ActivityCreateClient::class.java))
+            R.id.nav_home -> this@MainActivity.startActivity(Intent(this@MainActivity, CreateClientActivity::class.java))
             R.id.nav_gallery -> Toast.makeText(this, "Clicked item two", Toast.LENGTH_SHORT).show()
             R.id.nav_slideshow -> Toast.makeText(this, "Clicked item three", Toast.LENGTH_SHORT).show()
         }
