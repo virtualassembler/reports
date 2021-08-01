@@ -35,8 +35,8 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     //private val insertDefaultData = TotalizerDatabase.PopulateDbAsyncTask(instance)
 
     //private val clientList: ClientDao get() = TotalizerDatabase.getInstance(this)!!.getClientDAO()
-    private val clientList: List<ClientDataType>  get() = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList()
-    private val clientList2: List<ClientDataType>  get() = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList()
+    //private val clientList: List<ClientDataType>  get() = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList()
+    //private val clientList2: List<ClientDataType>  get() = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,12 +64,12 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
-        Log.e("#000",""+TotalizerDatabase.PopulateDbAsyncTask(TotalizerDatabase.getInstance(applicationContext)))
+        //Log.e("#000",""+TotalizerDatabase.PopulateDbAsyncTask(TotalizerDatabase.getTotalizerDatabase(applicationContext)))
         Log.e("#001",""+TotalizerDatabase.getInstance(this)!!.getVegetableDAO().getVegetableList())
-        Log.e("#002","eee"+clientList)
+        Log.e("#002","eee"+TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList())
         Log.e("#003","test")
 
-        Log.e("#002","eee"+clientList2)
+        //Log.e("#002","eee"+clientList2)
 
     }
 

@@ -20,7 +20,6 @@ data class ClientDataType(
         @SerializedName("telClient")
         var telClient: String?
 ){
-
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
         var id: Int = 0

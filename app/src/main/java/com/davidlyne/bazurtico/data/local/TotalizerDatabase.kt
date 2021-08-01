@@ -16,19 +16,24 @@ import androidx.sqlite.db.SupportSQLiteDatabase
  * @author david.mazo
  */
 
-@Database(entities = [ClientDataType::class, VegetableDataType::class], version = 9, exportSchema = false)
+@Database(entities = [ClientDataType::class, VegetableDataType::class], version = 1, exportSchema = false)
 abstract class TotalizerDatabase : RoomDatabase() {
 
     abstract fun getClientDAO(): ClientDao
     abstract fun getVegetableDAO(): VegetableDao
 
-//    companion object {
-//        fun getTotalizerDatabase(context: Context) = Room.databaseBuilder(context.applicationContext,
-//                TotalizerDatabase::class.java, "TotalizerDatabase")
-//                .allowMainThreadQueries()
-//                .build()
-//    }
+    //    companion object {
+    //        fun getTotalizerDatabase(context: Context) = Room.databaseBuilder(context.applicationContext,
+    //                TotalizerDatabase::class.java, "TotalizerDatabase")
+    //                .allowMainThreadQueries()
+    //                .build()
+    //    }
+
+
     companion object {
+        //fun getTotalizerDatabase(context: Context) = Room.databaseBuilder(context.applicationContext,TotalizerDatabase::class.java, "TotalizerDatabase").allowMainThreadQueries().build()
+
+
         private var instance: TotalizerDatabase? = null
 
         fun getInstance(context: Context): TotalizerDatabase? {
@@ -36,7 +41,7 @@ abstract class TotalizerDatabase : RoomDatabase() {
                 synchronized(TotalizerDatabase::class) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        TotalizerDatabase::class.java, "route_database"
+                        TotalizerDatabase::class.java, "bazurtico_database"
                     )
                         .fallbackToDestructiveMigration()
                         .addCallback(roomCallback)
@@ -50,6 +55,7 @@ abstract class TotalizerDatabase : RoomDatabase() {
         fun destroyInstance() {
             instance = null
         }
+
 
         private val roomCallback = object : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
