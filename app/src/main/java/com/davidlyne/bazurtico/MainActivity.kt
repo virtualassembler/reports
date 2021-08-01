@@ -36,10 +36,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val movieDatabase: VegetableDao get() = TotalizerDatabase.getInstance(this)!!.getVegetableDAO()
     private val clientList: ClientDao get() = TotalizerDatabase.getInstance(this)!!.getClientDAO()
-    private lateinit var linearLayoutManager: LinearLayoutManager
-    private lateinit var gridLayoutManager: GridLayoutManager
-    private lateinit var staggeredGridLayoutManager: StaggeredGridLayoutManager
-    private lateinit var soccerLeagueListAdapter: SoccerLeagueListAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +66,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         Log.e("#001",""+movieDatabase.getVegetableList())
         Log.e("#002","eee"+clientList.getClientList())
         Log.e("#003","test")
-        setRecyclerViewSoccerLeagues("Spanish La Liga")
+
     }
 
     //ADDED
@@ -93,31 +90,4 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-
-    private fun setRecyclerViewSoccerLeagues(league: String) {
-        soccerLeagueListAdapter = SoccerLeagueListAdapter()
-        gridLayoutManager = GridLayoutManager(this, 2)
-        linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        //recyclerView.layoutManager = gridLayoutManager
-        //recyclerView.adapter = soccerLeagueListAdapter
-        /*
-        soccerLeagueRepository = SoccerLeagueRepository(this)
-        if (hasConnection()) {
-            soccerLeagueListAdapter.addAll(soccerLeagueRepository.requestMovieReviewList(league))
-            Snackbar.make(
-                constraintLayoutMainActivity,
-                getString(R.string.movie_review_database_updated),
-                Snackbar.LENGTH_LONG
-            ).show()
-        } else {
-            soccerLeagueListAdapter.addAll(soccerLeagueRepository.getMovieReviewList())
-            Snackbar.make(
-                constraintLayoutMainActivity,
-                getString(R.string.not_network_connection),
-                Snackbar.LENGTH_LONG
-            ).show()
-        }
-        */
-    }
 }
