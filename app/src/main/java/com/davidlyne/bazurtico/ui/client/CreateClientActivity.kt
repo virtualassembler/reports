@@ -18,7 +18,7 @@ class CreateClientActivity : AppCompatActivity() {
             //Save on database
             val name = editTextTextPersonName.text
             if(name.length > 0){
-                val bazurticoClient =  ClientDataType(1,""+name,"3144468866")
+                val bazurticoClient =  ClientDataType(""+name,"3144468866")
                 TotalizerDatabase.getInstance(this)!!.getClientDAO().insertClient(bazurticoClient)
                 Toast.makeText(applicationContext, "Cliente guardado exitosamente", Toast.LENGTH_LONG).show()
                 //Redirect to main activity

@@ -15,11 +15,13 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "client")
 data class ClientDataType(
-        @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = "id")
-        var id: Int,
         @SerializedName("nameClient")
         var nameClient: String?,
         @SerializedName("telClient")
         var telClient: String?
-)
+){
+
+        @PrimaryKey(autoGenerate = true)
+        @ColumnInfo(name = "id")
+        var id: Int = 0
+}
