@@ -35,8 +35,11 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val movieDatabase: VegetableDao get() = TotalizerDatabase.getInstance(this)!!.getVegetableDAO()
-    private val clientList: ClientDao get() = TotalizerDatabase.getInstance(this)!!.getClientDAO()
+    //private val instance = TotalizerDatabase.getInstance(applicationContext)
+    //private val insertDefaultData = TotalizerDatabase.PopulateDbAsyncTask(instance)
 
+    //private val clientList: ClientDao get() = TotalizerDatabase.getInstance(this)!!.getClientDAO()
+    private val clientList: List<ClientDataClass>  get() = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,8 +66,10 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         //ADDED
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
+
+        Log.e("#000",""+TotalizerDatabase.PopulateDbAsyncTask(TotalizerDatabase.getInstance(applicationContext)))
         Log.e("#001",""+movieDatabase.getVegetableList())
-        Log.e("#002","eee"+clientList.getClientList())
+        Log.e("#002","eee"+clientList)
         Log.e("#003","test")
 
     }

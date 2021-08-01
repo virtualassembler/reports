@@ -13,7 +13,7 @@ import com.google.gson.annotations.SerializedName
  * @author david.lyne
  */
 @Entity(tableName = "vegetable")
-data class Vegetable(
+data class VegetableDataType(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
         var id: Int,

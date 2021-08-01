@@ -16,7 +16,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
  * @author david.mazo
  */
 
-@Database(entities = [ClientDataClass::class, Vegetable::class], version = 6, exportSchema = false)
+@Database(entities = [ClientDataClass::class, VegetableDataType::class], version = 7, exportSchema = false)
 abstract class TotalizerDatabase : RoomDatabase() {
 
     abstract fun getClientDAO(): ClientDao
@@ -28,36 +28,36 @@ abstract class TotalizerDatabase : RoomDatabase() {
 //                .allowMainThreadQueries()
 //                .build()
 //    }
-companion object {
-    private var instance: TotalizerDatabase? = null
+    companion object {
+        private var instance: TotalizerDatabase? = null
 
-    fun getInstance(context: Context): TotalizerDatabase? {
-        if (instance == null) {
-            synchronized(TotalizerDatabase::class) {
-                instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    TotalizerDatabase::class.java, "route_database"
-                )
-                    .fallbackToDestructiveMigration()
-                    .addCallback(roomCallback)
-                    .allowMainThreadQueries()
-                    .build()
+        fun getInstance(context: Context): TotalizerDatabase? {
+            if (instance == null) {
+                synchronized(TotalizerDatabase::class) {
+                    instance = Room.databaseBuilder(
+                        context.applicationContext,
+                        TotalizerDatabase::class.java, "route_database"
+                    )
+                        .fallbackToDestructiveMigration()
+                        .addCallback(roomCallback)
+                        .allowMainThreadQueries()
+                        .build()
+                }
+            }
+            return instance
+        }
+
+        fun destroyInstance() {
+            instance = null
+        }
+
+        private val roomCallback = object : RoomDatabase.Callback() {
+            override fun onCreate(db: SupportSQLiteDatabase) {
+                super.onCreate(db)
+                PopulateDbAsyncTask(instance).execute()
             }
         }
-        return instance
     }
-
-    fun destroyInstance() {
-        instance = null
-    }
-
-    private val roomCallback = object : RoomDatabase.Callback() {
-        override fun onCreate(db: SupportSQLiteDatabase) {
-            super.onCreate(db)
-            PopulateDbAsyncTask(instance).execute()
-        }
-    }
-}
 
     class PopulateDbAsyncTask(db: TotalizerDatabase?) : AsyncTask<Unit, Unit, Unit>() {
         private val roadReference = db?.getVegetableDAO()

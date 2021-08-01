@@ -16,13 +16,13 @@ import androidx.room.Query
 @Dao
 interface VegetableDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vegetable: Vegetable)
+    fun insert(vegetableDataType: VegetableDataType)
 
     @Query("SELECT * FROM vegetable")
-    fun getVegetableList(): List<Vegetable>
+    fun getVegetableList(): List<VegetableDataType>
 
     @Query("SELECT * FROM vegetable WHERE vegetable.id=:id")
-    fun getVegetableDetail(id: Int): Vegetable
+    fun getVegetableDetail(id: Int): VegetableDataType
 
     @Query("DELETE FROM vegetable")
     fun deleteAllVegetables()

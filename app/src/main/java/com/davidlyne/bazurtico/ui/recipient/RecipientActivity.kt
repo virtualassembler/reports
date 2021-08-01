@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.david.spanisleague.repository.TeamRepository
+import com.david.spanisleague.repository.VegetableRepository
 import com.davidlyne.bazurtico.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_recipient.*
@@ -16,7 +16,7 @@ class RecipientActivity : AppCompatActivity() {
     private lateinit var gridLayoutManager: GridLayoutManager
     private lateinit var staggeredGridLayoutManager: StaggeredGridLayoutManager
     private lateinit var soccerLeagueListAdapter: SoccerLeagueListAdapter
-    private lateinit var teamRepository: TeamRepository
+    private lateinit var clientRepository: VegetableRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +31,9 @@ class RecipientActivity : AppCompatActivity() {
         staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = gridLayoutManager
         recyclerView.adapter = soccerLeagueListAdapter
-        teamRepository = TeamRepository(this)
-        soccerLeagueListAdapter.addAll(teamRepository.requestTeamReviewList("algo"))
+        clientRepository = VegetableRepository(this)
+        //soccerLeagueListAdapter.addAll(clientRepository.requestTeamReviewList("algo"))
+        soccerLeagueListAdapter.addAll(VegetableRepository(applicationContext).requestVegetableList("lo que sea"))
         Snackbar.make(
             constraintLayoutMainActivity,
             "listado de clientes",

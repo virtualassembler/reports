@@ -2,6 +2,9 @@ package com.david.spanisleague.repository
 
 import android.content.Context
 import android.util.Log
+import com.davidlyne.bazurtico.data.local.ClientDataClass
+import com.davidlyne.bazurtico.data.local.TotalizerDatabase
+import com.davidlyne.bazurtico.data.local.VegetableDataType
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,7 +18,14 @@ import retrofit2.Response
  *
  * @author david.mazo
  */
-class SoccerLeagueRepository(private val context: Context) {
+class VegetableRepository(private val context: Context) {
+
+    private val vegetableList: List<VegetableDataType> get() = TotalizerDatabase.getInstance(context)!!.getVegetableDAO().getVegetableList()
+
+    fun requestVegetableList(idTeam: String?): List<VegetableDataType> {
+        return vegetableList
+    }
+
     /*
 
     private val apiService = ApiRequest.instance

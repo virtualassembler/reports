@@ -4,10 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.davidlyne.bazurtico.R
 import com.davidlyne.bazurtico.data.local.ClientDataClass
-import com.davidlyne.bazurtico.ui.client.SoccerLeagueEvents
+import com.davidlyne.bazurtico.data.local.VegetableDataType
 import kotlinx.android.synthetic.main.list_item.view.*
 
 /**
@@ -17,32 +16,31 @@ import kotlinx.android.synthetic.main.list_item.view.*
  *
  * @author david.mazo
  */
-class SoccerLeagueListAdapter() :
-        RecyclerView.Adapter<SoccerLeagueListAdapter.ViewHolder>() {
+class SoccerLeagueListAdapter() : RecyclerView.Adapter<SoccerLeagueListAdapter.ViewHolder>() {
 
-    private var listSoccerLeague: List<ClientDataClass> = listOf()
+    private var listVegetable: List<VegetableDataType> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false))
     }
 
     override fun getItemCount(): Int {
-        return listSoccerLeague.size
+        return listVegetable.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(listSoccerLeague[position])
+        holder.bindItem(listVegetable[position])
     }
 
-    fun addAll(listSoccerLeague: List<ClientDataClass>) {
-        this.listSoccerLeague = listSoccerLeague
+    fun addAll(listVegetable: List<VegetableDataType>) {
+        this.listVegetable = listVegetable
         notifyDataSetChanged()
     }
 
     class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        fun bindItem(soccerLeague: ClientDataClass) {
-            itemView.textViewName.text = soccerLeague.nameClient
-            itemView.textViewStadium.text = soccerLeague.telClient
+        fun bindItem(soccerLeague: VegetableDataType) {
+            itemView.textViewName.text = soccerLeague.name
+            //itemView.textViewStadium.text = soccerLeague.telClient
             /*
             Glide.with(itemView)
                     .load(soccerLeague.strTeamBadge)

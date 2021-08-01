@@ -8,12 +8,12 @@ package com.davidlyne.bazurtico.data.local
  */
 
 val vegetableList = listOf(
-    Vegetable(1,"Limon",80),
-    Vegetable(2,"Apio",2),
-    Vegetable(3,"Cilantro",8),
-    Vegetable(4,"Cebollin",3)
+    VegetableDataType(1,"Limon",80),
+    VegetableDataType(2,"Apio",2),
+    VegetableDataType(3,"Cilantro",8),
+    VegetableDataType(4,"Cebollin",3)
 )
 
-fun getDefaultVegetableList(): List<Vegetable> {
+fun getDefaultVegetableList(): List<VegetableDataType> {
     return vegetableList
 }
