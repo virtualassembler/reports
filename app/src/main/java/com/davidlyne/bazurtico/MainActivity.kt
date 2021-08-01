@@ -21,10 +21,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.davidlyne.bazurtico.data.local.ClientDao
+import com.davidlyne.bazurtico.data.local.ClientDataClass
 import com.davidlyne.bazurtico.data.local.TotalizerDatabase
 import com.davidlyne.bazurtico.data.local.VegetableDao
 import com.davidlyne.bazurtico.ui.client.CreateClientActivity
+import com.davidlyne.bazurtico.ui.recipient.RecipientActivity
 import com.davidlyne.bazurtico.ui.recipient.SoccerLeagueListAdapter
+import kotlinx.android.synthetic.main.activity_create_client.*
+
 //import kotlinx.android.synthetic.main.activity_main.recyclerView
 
 class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
@@ -47,6 +51,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
+            this@MainActivity.startActivity(Intent(this@MainActivity, RecipientActivity::class.java))
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
