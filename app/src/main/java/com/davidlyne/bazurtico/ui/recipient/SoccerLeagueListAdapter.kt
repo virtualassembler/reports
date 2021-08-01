@@ -41,8 +41,8 @@ class SoccerLeagueListAdapter() :
 
     class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         fun bindItem(soccerLeague: ClientDataClass) {
-            itemView.textViewName.text = "ttttttttttt"
-            itemView.textViewStadium.text = "Stadium: xxx"
+            itemView.textViewName.text = soccerLeague.nameClient
+            itemView.textViewStadium.text = soccerLeague.telClient
             /*
             Glide.with(itemView)
                     .load(soccerLeague.strTeamBadge)
