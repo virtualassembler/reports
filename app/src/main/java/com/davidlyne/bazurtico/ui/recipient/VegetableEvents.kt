@@ -1,6 +1,6 @@
 package com.davidlyne.bazurtico.ui.client
 
-import com.davidlyne.bazurtico.data.local.ClientDataClass
+import com.davidlyne.bazurtico.data.local.VegetableDataType
 
 
 /**
@@ -10,6 +10,6 @@ import com.davidlyne.bazurtico.data.local.ClientDataClass
  *
  * @author david.mazo
  */
-interface SoccerLeagueEvents {
-    fun onItemClicked(clientDataClass: ClientDataClass)
+interface VegetableEvents {
+    fun onItemClicked(vegetableDataType: VegetableDataType)
 }

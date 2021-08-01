@@ -16,13 +16,13 @@ import androidx.room.Query
 interface ClientDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertClient(clientDataClass: ClientDataClass)
+    fun insertClient(clientDataType: ClientDataType)
 
     @Query("SELECT * FROM client")
-    fun getClientList(): List<ClientDataClass>
+    fun getClientList(): List<ClientDataType>
 
     @Query("SELECT * FROM client WHERE client.id=:id")
-    fun getClientDetail(id: Int): ClientDataClass
+    fun getClientDetail(id: Int): ClientDataType
 
     /*
     @Query("DELETE FROM client")

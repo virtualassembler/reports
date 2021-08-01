@@ -17,16 +17,12 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.davidlyne.bazurtico.data.local.ClientDao
-import com.davidlyne.bazurtico.data.local.ClientDataClass
+import com.davidlyne.bazurtico.data.local.ClientDataType
 import com.davidlyne.bazurtico.data.local.TotalizerDatabase
 import com.davidlyne.bazurtico.data.local.VegetableDao
 import com.davidlyne.bazurtico.ui.client.CreateClientActivity
-import com.davidlyne.bazurtico.ui.recipient.RecipientActivity
-import com.davidlyne.bazurtico.ui.recipient.SoccerLeagueListAdapter
+import com.davidlyne.bazurtico.ui.recipient.NewRecipientActivity
+import com.davidlyne.bazurtico.ui.recipient.SelectVegetableActivity
 import kotlinx.android.synthetic.main.activity_create_client.*
 
 //import kotlinx.android.synthetic.main.activity_main.recyclerView
@@ -34,12 +30,13 @@ import kotlinx.android.synthetic.main.activity_create_client.*
 class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private val movieDatabase: VegetableDao get() = TotalizerDatabase.getInstance(this)!!.getVegetableDAO()
+    //private val movieDatabase: VegetableDao get() = TotalizerDatabase.getInstance(this)!!.getVegetableDAO()
     //private val instance = TotalizerDatabase.getInstance(applicationContext)
     //private val insertDefaultData = TotalizerDatabase.PopulateDbAsyncTask(instance)
 
     //private val clientList: ClientDao get() = TotalizerDatabase.getInstance(this)!!.getClientDAO()
-    private val clientList: List<ClientDataClass>  get() = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList()
+    private val clientList: List<ClientDataType>  get() = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList()
+    private val clientList2: List<ClientDataType>  get() = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +48,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
-            this@MainActivity.startActivity(Intent(this@MainActivity, RecipientActivity::class.java))
+            this@MainActivity.startActivity(Intent(this@MainActivity, NewRecipientActivity::class.java))
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -68,9 +65,11 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         navigationView.setNavigationItemSelectedListener(this)
 
         Log.e("#000",""+TotalizerDatabase.PopulateDbAsyncTask(TotalizerDatabase.getInstance(applicationContext)))
-        Log.e("#001",""+movieDatabase.getVegetableList())
+        Log.e("#001",""+TotalizerDatabase.getInstance(this)!!.getVegetableDAO().getVegetableList())
         Log.e("#002","eee"+clientList)
         Log.e("#003","test")
+
+        Log.e("#002","eee"+clientList2)
 
     }
 
@@ -78,7 +77,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> this@MainActivity.startActivity(Intent(this@MainActivity, CreateClientActivity::class.java))
-            R.id.nav_gallery -> Toast.makeText(this, "Clicked item two", Toast.LENGTH_SHORT).show()
+            R.id.nav_gallery -> this@MainActivity.startActivity(Intent(this@MainActivity, SelectVegetableActivity::class.java))
             R.id.nav_slideshow -> Toast.makeText(this, "Clicked item three", Toast.LENGTH_SHORT).show()
         }
         return true

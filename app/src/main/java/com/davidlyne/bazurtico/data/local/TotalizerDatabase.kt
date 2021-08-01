@@ -16,7 +16,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
  * @author david.mazo
  */
 
-@Database(entities = [ClientDataClass::class, VegetableDataType::class], version = 7, exportSchema = false)
+@Database(entities = [ClientDataType::class, VegetableDataType::class], version = 9, exportSchema = false)
 abstract class TotalizerDatabase : RoomDatabase() {
 
     abstract fun getClientDAO(): ClientDao

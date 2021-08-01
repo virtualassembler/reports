@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.davidlyne.bazurtico.R
-import com.davidlyne.bazurtico.data.local.ClientDataClass
 import com.davidlyne.bazurtico.data.local.VegetableDataType
 import kotlinx.android.synthetic.main.list_item.view.*
 
@@ -16,7 +15,7 @@ import kotlinx.android.synthetic.main.list_item.view.*
  *
  * @author david.mazo
  */
-class SoccerLeagueListAdapter() : RecyclerView.Adapter<SoccerLeagueListAdapter.ViewHolder>() {
+class VegetableListAdapter() : RecyclerView.Adapter<VegetableListAdapter.ViewHolder>() {
 
     private var listVegetable: List<VegetableDataType> = listOf()
 

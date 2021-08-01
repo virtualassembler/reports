@@ -10,12 +10,12 @@ import com.davidlyne.bazurtico.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_recipient.*
 
-class RecipientActivity : AppCompatActivity() {
+class SelectVegetableActivity : AppCompatActivity() {
 
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var gridLayoutManager: GridLayoutManager
     private lateinit var staggeredGridLayoutManager: StaggeredGridLayoutManager
-    private lateinit var soccerLeagueListAdapter: SoccerLeagueListAdapter
+    private lateinit var vegetableListAdapter: VegetableListAdapter
     private lateinit var clientRepository: VegetableRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,15 +25,15 @@ class RecipientActivity : AppCompatActivity() {
     }
 
     private fun setRecyclerViewSoccerLeagues(league: String) {
-        soccerLeagueListAdapter = SoccerLeagueListAdapter()
+        vegetableListAdapter = VegetableListAdapter()
         gridLayoutManager = GridLayoutManager(this, 2)
         linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = gridLayoutManager
-        recyclerView.adapter = soccerLeagueListAdapter
+        recyclerView.adapter = vegetableListAdapter
         clientRepository = VegetableRepository(this)
         //soccerLeagueListAdapter.addAll(clientRepository.requestTeamReviewList("algo"))
-        soccerLeagueListAdapter.addAll(VegetableRepository(applicationContext).requestVegetableList("lo que sea"))
+        vegetableListAdapter.addAll(VegetableRepository(applicationContext).requestVegetableList("lo que sea"))
         Snackbar.make(
             constraintLayoutMainActivity,
             "listado de clientes",

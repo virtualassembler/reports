@@ -14,7 +14,7 @@ import com.google.gson.annotations.SerializedName
  */
 
 @Entity(tableName = "client")
-data class ClientDataClass(
+data class ClientDataType(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
         var id: Int,
