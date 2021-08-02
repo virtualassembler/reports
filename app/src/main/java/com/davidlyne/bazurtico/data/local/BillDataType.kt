@@ -13,7 +13,7 @@ import com.google.gson.annotations.SerializedName
  * @author david.lyne
  */
 
-@Entity(tableName = "bill")
+@Entity(tableName = "bill_vegetable")
 data class BillDataType(
         @ColumnInfo(name = "id")
         var clientId: Int,
