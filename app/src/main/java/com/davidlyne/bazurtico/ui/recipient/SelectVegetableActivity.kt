@@ -35,6 +35,18 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
         val client: ClientDataType = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientDetail(bill.clientId)
         textViewClientName.text = "CLIENTE: "+client.nameClient.toString()
         textViewconsecutive.text = "CONSECUTIVO: "+bill.id.toString()
+
+        //onButtonAdd
+        buttonAddVegetable.setOnClickListener {
+            // agrega este producto a la List de productos seleccionados
+
+            //setea el reciclerviewcon la lista de vegetales actualizada
+        }
+
+        //onButtonSaveBill
+        buttonAddVegetable.setOnClickListener {
+            // Change bill state to 1
+        }
     }
 
     private fun setRecyclerViewSoccerLeagues() {
@@ -73,8 +85,7 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
     }
 
     override fun onItemClicked(vegetableDataType: VegetableDataType) {
-        //elelmento guardado en database
-        //
+        textViewSelectedVegetable.text = vegetableDataType.name.toString()
         Log.e("#ERROR008","eee"+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillList())
     }
 
