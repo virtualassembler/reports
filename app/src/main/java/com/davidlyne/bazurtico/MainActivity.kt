@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     //private val movieDatabase: VegetableDao get() = TotalizerDatabase.getInstance(this)!!.getVegetableDAO()
     //private val instance = TotalizerDatabase.getInstance(applicationContext)
     //private val insertDefaultData = TotalizerDatabase.PopulateDbAsyncTask(instance)
-
     //private val clientList: ClientDao get() = TotalizerDatabase.getInstance(this)!!.getClientDAO()
     //private val clientList: List<ClientDataType>  get() = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList()
     //private val clientList2: List<ClientDataType>  get() = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList()

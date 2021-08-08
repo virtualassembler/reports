@@ -1,5 +1,6 @@
 package com.davidlyne.bazurtico.ui.recipient
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
@@ -8,11 +9,13 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.david.spanisleague.repository.ClientRepository
 import com.david.spanisleague.repository.VegetableRepository
 import com.davidlyne.bazurtico.R
+import com.davidlyne.bazurtico.data.local.ClientDataType
+import com.davidlyne.bazurtico.ui.client.ClientEvents
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_new_recipient.*
 import kotlinx.android.synthetic.main.activity_recipient.*
 
-class NewRecipientActivity : AppCompatActivity() {
+class NewRecipientActivity : ClientEvents,AppCompatActivity() {
 
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var gridLayoutManager: GridLayoutManager
@@ -23,11 +26,11 @@ class NewRecipientActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_recipient)
-        setRecyclerViewSoccerLeagues("Spanish La Liga")
+        setRecyclerViewSoccerLeagues()
     }
 
-    private fun setRecyclerViewSoccerLeagues(league: String) {
-        clientListAdapter = ClientListAdapter()
+    private fun setRecyclerViewSoccerLeagues() {
+        clientListAdapter = ClientListAdapter(this)
         gridLayoutManager = GridLayoutManager(this, 2)
         linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -59,5 +62,11 @@ class NewRecipientActivity : AppCompatActivity() {
             ).show()
         }
         */
+    }
+
+    override fun onItemClicked(clientDataType: ClientDataType) {
+        val intent = Intent(this, ClientDetailActivity::class.java)
+        intent.putExtra("client", 1)
+        startActivity(intent)
     }
 }

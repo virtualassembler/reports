@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.davidlyne.bazurtico.R
 import com.davidlyne.bazurtico.data.local.VegetableDataType
+import com.davidlyne.bazurtico.ui.client.VegetableEvents
 import kotlinx.android.synthetic.main.list_item.view.*
 
 /**
@@ -15,7 +17,7 @@ import kotlinx.android.synthetic.main.list_item.view.*
  *
  * @author david.mazo
  */
-class VegetableListAdapter() : RecyclerView.Adapter<VegetableListAdapter.ViewHolder>() {
+class VegetableListAdapter(private val vegetableEvents: VegetableEvents) : RecyclerView.Adapter<VegetableListAdapter.ViewHolder>() {
 
     private var listVegetable: List<VegetableDataType> = listOf()
 
@@ -28,7 +30,7 @@ class VegetableListAdapter() : RecyclerView.Adapter<VegetableListAdapter.ViewHol
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(listVegetable[position])
+        holder.bindItem(listVegetable[position],vegetableEvents)
     }
 
     fun addAll(listVegetable: List<VegetableDataType>) {
@@ -37,18 +39,17 @@ class VegetableListAdapter() : RecyclerView.Adapter<VegetableListAdapter.ViewHol
     }
 
     class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        fun bindItem(soccerLeague: VegetableDataType) {
-            itemView.textViewName.text = soccerLeague.name
+        fun bindItem(vegetable: VegetableDataType,listener: VegetableEvents) {
+            itemView.textViewName.text = vegetable.name
             //itemView.textViewStadium.text = soccerLeague.telClient
-            /*
             Glide.with(itemView)
-                    .load(soccerLeague.strTeamBadge)
+                    .load("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.eluniversal.com.mx%2Fmenu%2Fcomo-mantener-los-limones-frescos&psig=AOvVaw2yvqmCQPHorcvrfIs2kE8L&ust=1628471132038000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCPi5hO2doPICFQAAAAAdAAAAABAD")
                     .centerCrop()
                     .fitCenter()
                     .override(1000, 1000)
                     .into(itemView.imageViewTeamBadge)
-            view.setOnClickListener { listener.onItemClicked(soccerLeague) }
-            */
+            view.setOnClickListener { listener.onItemClicked(vegetable) }
+
         }
     }
 }

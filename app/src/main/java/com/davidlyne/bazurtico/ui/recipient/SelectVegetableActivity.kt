@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.david.spanisleague.repository.VegetableRepository
 import com.davidlyne.bazurtico.R
+import com.davidlyne.bazurtico.ui.client.VegetableEvents
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_recipient.*
 
@@ -25,7 +26,7 @@ class SelectVegetableActivity : AppCompatActivity() {
     }
 
     private fun setRecyclerViewSoccerLeagues(league: String) {
-        vegetableListAdapter = VegetableListAdapter()
+        vegetableListAdapter = VegetableListAdapter(this as VegetableEvents)
         gridLayoutManager = GridLayoutManager(this, 2)
         linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
