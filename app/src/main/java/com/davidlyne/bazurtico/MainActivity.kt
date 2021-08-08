@@ -23,8 +23,6 @@ import com.davidlyne.bazurtico.ui.recipient.SelectVegetableActivity
 import com.davidlyne.bazurtico.ui.recipient.SelectClientActivity
 import kotlinx.android.synthetic.main.activity_create_client.*
 
-//import kotlinx.android.synthetic.main.activity_main.recyclerView
-
 class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -45,7 +43,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
-            this@MainActivity.startActivity(Intent(this@MainActivity, SelectVegetableActivity::class.java))
+            this@MainActivity.startActivity(Intent(this@MainActivity, SelectClientActivity::class.java))
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
