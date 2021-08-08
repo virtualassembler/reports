@@ -1,4 +1,4 @@
-package com.david.spanisleague.repository
+package com.davidlyne.bazurtico.repository
 
 import android.content.Context
 import com.davidlyne.bazurtico.data.local.ClientDataType

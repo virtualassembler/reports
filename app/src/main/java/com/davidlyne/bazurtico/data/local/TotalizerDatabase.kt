@@ -16,9 +16,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
  * @author david.mazo
  */
 
-@Database(entities = [ClientDataType::class, VegetableDataType::class], version = 1, exportSchema = false)
+@Database(entities = [ClientDataType::class, VegetableDataType::class,BillDataType::class,BillVegetableDataType::class], version = 6, exportSchema = false)
 abstract class TotalizerDatabase : RoomDatabase() {
 
+    abstract fun getBillDAO(): BillDao
     abstract fun getClientDAO(): ClientDao
     abstract fun getVegetableDAO(): VegetableDao
 
@@ -56,7 +57,6 @@ abstract class TotalizerDatabase : RoomDatabase() {
             instance = null
         }
 
-
         private val roomCallback = object : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
@@ -70,6 +70,7 @@ abstract class TotalizerDatabase : RoomDatabase() {
         override fun doInBackground(vararg p0: Unit?) {
             getDefaultVegetableList().forEach {
                 roadReference?.insert(it)
+
             }
         }
     }

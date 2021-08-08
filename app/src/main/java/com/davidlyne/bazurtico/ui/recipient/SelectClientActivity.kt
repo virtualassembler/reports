@@ -7,12 +7,12 @@ import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.david.spanisleague.repository.ClientRepository
-import com.david.spanisleague.repository.VegetableRepository
 import com.davidlyne.bazurtico.R
+import com.davidlyne.bazurtico.data.local.BillDataType
 import com.davidlyne.bazurtico.data.local.ClientDataType
+import com.davidlyne.bazurtico.data.local.TotalizerDatabase
+import com.davidlyne.bazurtico.repository.ClientRepository
 import com.davidlyne.bazurtico.ui.client.ClientEvents
-import com.davidlyne.bazurtico.ui.client.VegetableEvents
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_select_client.*
 
@@ -69,6 +69,7 @@ class SelectClientActivity : ClientEvents, AppCompatActivity() {
         val intent = Intent(this, SelectVegetableActivity::class.java)
         intent.putExtra("client", clientDataType.id)
         Log.e("error001",""+clientDataType.id)
+        TotalizerDatabase.getInstance(this)!!.getBillDAO().insertBill(BillDataType(clientDataType.id,2,System.currentTimeMillis(),System.currentTimeMillis()))
         startActivity(intent)
     }
 

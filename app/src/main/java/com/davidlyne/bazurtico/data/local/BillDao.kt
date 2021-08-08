@@ -16,12 +16,13 @@ interface BillDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertBill(billDataType: BillDataType)
 
-    @Query("SELECT * FROM client")
-    fun getBillList(): List<ClientDataType>
+    @Query("SELECT * FROM bill")
+    fun getBillList(): List<BillDataType>
 
-    @Query("SELECT * FROM client WHERE client.id=:id")
-    fun getBillDetail(id: Int): ClientDataType
+    @Query("SELECT * FROM bill WHERE bill.id=:id")
+    fun getBillDetail(id: Int): BillDataType
 
+    /*
     //abstract fun insert(apply: BillDataType)
 
     @Update
@@ -39,6 +40,7 @@ interface BillDao {
             modifiedAt = System.currentTimeMillis()
         })
     }
+    */
 
     /*
     @Query("DELETE FROM bill")

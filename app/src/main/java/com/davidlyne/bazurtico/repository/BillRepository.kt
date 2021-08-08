@@ -1,25 +1,30 @@
 package com.davidlyne.bazurtico.repository
 
 import android.content.Context
+import com.davidlyne.bazurtico.data.local.BillDataType
+import com.davidlyne.bazurtico.data.local.ClientDataType
 import com.davidlyne.bazurtico.data.local.TotalizerDatabase
-import com.davidlyne.bazurtico.data.local.VegetableDataType
 
 /**
  * SoccerLeagueRepository class
  *
- * This Class returns the data to the presentation layout
- * a requestSoccerLeagueList method is created and asks if there is access to the internet performs a callback.enqueue,
- * through retrofit and populates Sqlite Room table and the UI
- *
- * @author david.mazo
+ * @author david.lyne
  */
-class VegetableRepository(private val context: Context) {
 
-    private val vegetableList: List<VegetableDataType> get() = TotalizerDatabase.getInstance(context)!!.getVegetableDAO().getVegetableList()
+class BillRepository(private val context: Context) {
+    /*
 
-    fun requestVegetableList(): List<VegetableDataType> {
-        return vegetableList
+    private val billList: List<BillDataType> get() = TotalizerDatabase.getInstance(context).getBillDAO().
+
+    fun requestBillList(): List<ClientDataType> {
+        return billList
     }
+
+    fun requestBillList(): List<ClientDataType> {
+        return billList
+    }
+
+    */
 
     /*
 
