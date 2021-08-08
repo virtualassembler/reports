@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.recipient.ClientDetailActivity"></activity>
-        <activity android:name=".ui.recipient.NewRecipientActivity" />
         <activity android:name=".ui.recipient.SelectVegetableActivity" />
+        <activity android:name=".ui.recipient.SelectClientActivity" />
         <activity android:name=".ui.client.CreateClientActivity" />
         <activity
             android:name=".MainActivity"

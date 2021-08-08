@@ -1,46 +1,42 @@
 package com.davidlyne.bazurtico.ui.recipient
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.david.spanisleague.repository.ClientRepository
 import com.david.spanisleague.repository.VegetableRepository
 import com.davidlyne.bazurtico.R
-import com.davidlyne.bazurtico.data.local.ClientDataType
-import com.davidlyne.bazurtico.ui.client.ClientEvents
+import com.davidlyne.bazurtico.ui.client.VegetableEvents
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_new_recipient.*
-import kotlinx.android.synthetic.main.activity_recipient.*
+import kotlinx.android.synthetic.main.activity_select_client.*
 
-class NewRecipientActivity : ClientEvents,AppCompatActivity() {
+class SelectClientActivity : AppCompatActivity() {
 
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var gridLayoutManager: GridLayoutManager
     private lateinit var staggeredGridLayoutManager: StaggeredGridLayoutManager
-    private lateinit var clientListAdapter: ClientListAdapter
-    private lateinit var clientRepository: ClientRepository
+    private lateinit var vegetableListAdapter: VegetableListAdapter
+    private lateinit var clientRepository: VegetableRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_new_recipient)
-        setRecyclerViewSoccerLeagues()
+        setContentView(R.layout.activity_select_client)
+        setRecyclerViewSoccerLeagues("Spanish La Liga")
     }
 
-    private fun setRecyclerViewSoccerLeagues() {
-        clientListAdapter = ClientListAdapter(this)
+    private fun setRecyclerViewSoccerLeagues(league: String) {
+        vegetableListAdapter = VegetableListAdapter(this as VegetableEvents)
         gridLayoutManager = GridLayoutManager(this, 2)
         linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        recyclerViewClient.layoutManager = gridLayoutManager
-        recyclerViewClient.adapter = clientListAdapter
-        clientRepository = ClientRepository(this)
+        recyclerView.layoutManager = gridLayoutManager
+        recyclerView.adapter = vegetableListAdapter
+        clientRepository = VegetableRepository(this)
         //soccerLeagueListAdapter.addAll(clientRepository.requestTeamReviewList("algo"))
-        clientListAdapter.addAll(ClientRepository(applicationContext).requestClientList())
+        vegetableListAdapter.addAll(VegetableRepository(applicationContext).requestVegetableList("lo que sea"))
         Snackbar.make(
-            constraintLayoutClient,
+            constraintLayoutMainActivity,
             "listado de clientes",
             Snackbar.LENGTH_LONG
         ).show()
@@ -64,9 +60,4 @@ class NewRecipientActivity : ClientEvents,AppCompatActivity() {
         */
     }
 
-    override fun onItemClicked(clientDataType: ClientDataType) {
-        val intent = Intent(this, ClientDetailActivity::class.java)
-        intent.putExtra("client", 1)
-        startActivity(intent)
-    }
 }

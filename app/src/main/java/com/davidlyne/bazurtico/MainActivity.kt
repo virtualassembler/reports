@@ -17,12 +17,10 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.davidlyne.bazurtico.data.local.ClientDataType
 import com.davidlyne.bazurtico.data.local.TotalizerDatabase
-import com.davidlyne.bazurtico.data.local.VegetableDao
 import com.davidlyne.bazurtico.ui.client.CreateClientActivity
-import com.davidlyne.bazurtico.ui.recipient.NewRecipientActivity
 import com.davidlyne.bazurtico.ui.recipient.SelectVegetableActivity
+import com.davidlyne.bazurtico.ui.recipient.SelectClientActivity
 import kotlinx.android.synthetic.main.activity_create_client.*
 
 //import kotlinx.android.synthetic.main.activity_main.recyclerView
@@ -47,7 +45,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
-            this@MainActivity.startActivity(Intent(this@MainActivity, NewRecipientActivity::class.java))
+            this@MainActivity.startActivity(Intent(this@MainActivity, SelectVegetableActivity::class.java))
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -76,7 +74,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> this@MainActivity.startActivity(Intent(this@MainActivity, CreateClientActivity::class.java))
-            R.id.nav_gallery -> this@MainActivity.startActivity(Intent(this@MainActivity, SelectVegetableActivity::class.java))
+            R.id.nav_gallery -> this@MainActivity.startActivity(Intent(this@MainActivity, SelectClientActivity::class.java))
             R.id.nav_slideshow -> Toast.makeText(this, "Clicked item three", Toast.LENGTH_SHORT).show()
         }
         return true

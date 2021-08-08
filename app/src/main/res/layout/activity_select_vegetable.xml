@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayoutClient"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.recipient.NewRecipientActivity">
+    tools:context=".ui.recipient.SelectVegetableActivity">
 
 
     <androidx.recyclerview.widget.RecyclerView
