@@ -30,6 +30,11 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_vegetable)
         setRecyclerViewSoccerLeagues()
+        // Filling bill headers
+        val bill : BillDataType = TotalizerDatabase.getInstance(this)!!.getBillDAO().getCurrentBill()
+        val client: ClientDataType = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientDetail(bill.clientId)
+        textViewClientName.text = "CLIENTE: "+client.nameClient.toString()
+        textViewconsecutive.text = "CONSECUTIVO: "+bill.id.toString()
     }
 
     private fun setRecyclerViewSoccerLeagues() {
@@ -69,8 +74,8 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
 
     override fun onItemClicked(vegetableDataType: VegetableDataType) {
         //elelmento guardado en database
-        TotalizerDatabase.getInstance(this)!!.getBillDAO().insertBill(BillDataType(vegetableDataType.id,2,System.currentTimeMillis(),System.currentTimeMillis()))
-        Log.e("#ERROR001","eee"+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillList())
+        //
+        Log.e("#ERROR008","eee"+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillList())
     }
 
 

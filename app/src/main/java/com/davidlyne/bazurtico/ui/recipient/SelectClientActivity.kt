@@ -28,6 +28,7 @@ class SelectClientActivity : ClientEvents, AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_client)
         setRecyclerViewSoccerLeagues()
+        TotalizerDatabase.getInstance(this)!!.getBillDAO().clearBillList()
     }
 
     private fun setRecyclerViewSoccerLeagues() {
@@ -67,7 +68,6 @@ class SelectClientActivity : ClientEvents, AppCompatActivity() {
 
     override fun onItemClicked(clientDataType: ClientDataType) {
         val intent = Intent(this, SelectVegetableActivity::class.java)
-        intent.putExtra("client", clientDataType.id)
         Log.e("error001",""+clientDataType.id)
         TotalizerDatabase.getInstance(this)!!.getBillDAO().insertBill(BillDataType(clientDataType.id,2,System.currentTimeMillis(),System.currentTimeMillis()))
         startActivity(intent)

@@ -19,8 +19,17 @@ interface BillDao {
     @Query("SELECT * FROM bill")
     fun getBillList(): List<BillDataType>
 
+    @Query("SELECT * FROM bill WHERE bill.id=:clientId")
+    fun getBill(clientId: Int): BillDataType
+
+    @Query("SELECT * FROM bill WHERE state=2")
+    fun getCurrentBill(): BillDataType
+
     @Query("SELECT * FROM bill WHERE bill.id=:id")
     fun getBillDetail(id: Int): BillDataType
+
+    @Query("DELETE FROM bill WHERE state = 2")
+    fun clearBillList()
 
     /*
     //abstract fun insert(apply: BillDataType)
