@@ -1,17 +1,14 @@
 package com.davidlyne.bazurtico.ui.recipient
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.davidlyne.bazurtico.R
-import com.davidlyne.bazurtico.data.local.BillDataType
-import com.davidlyne.bazurtico.data.local.ClientDataType
-import com.davidlyne.bazurtico.data.local.TotalizerDatabase
-import com.davidlyne.bazurtico.data.local.VegetableDataType
+import com.davidlyne.bazurtico.data.local.*
 import com.davidlyne.bazurtico.repository.VegetableRepository
 import com.davidlyne.bazurtico.ui.client.ClientEvents
 import com.davidlyne.bazurtico.ui.client.VegetableEvents
@@ -25,6 +22,8 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
     private lateinit var staggeredGridLayoutManager: StaggeredGridLayoutManager
     private lateinit var vegetableListAdapter: VegetableListAdapter
     private lateinit var vegetableRepository: VegetableRepository
+    //private lateinit var vegetableList: List<VegetableDataType>
+    private lateinit var selectedVegetable: VegetableDataType
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,16 +34,23 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
         val client: ClientDataType = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientDetail(bill.clientId)
         textViewClientName.text = "CLIENTE: "+client.nameClient.toString()
         textViewconsecutive.text = "CONSECUTIVO: "+bill.id.toString()
-
         //onButtonAdd
-        buttonAddVegetable.setOnClickListener {
-            // agrega este producto a la List de productos seleccionados
+        buttonAddVegetablex.setOnClickListener {
+            Toast.makeText(applicationContext, "pulsado add", Toast.LENGTH_LONG).show()
+            // Agrega este producto a la List de productos seleccionados
+            if(textViewSelectedVegetable.text.isNotEmpty() && editTextAmount.text.isNotEmpty() && editTextPrice.text.isNotEmpty()){
+                Toast.makeText(applicationContext, "pulsadox "+selectedVegetable.id, Toast.LENGTH_LONG).show()
+                Log.e("#ERROR009","aaa"+ selectedVegetable.id)
+                TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().insert(BillVegetableDataType(selectedVegetable.id,bill.id,Integer.parseInt(editTextAmount.text.toString().trim()) ,editTextPrice.text.toString().trim().toFloat()))
+                // Setea el reciclerview con la lista de vegetales actualizada
 
-            //setea el reciclerviewcon la lista de vegetales actualizada
+            }else{
+                Toast.makeText(applicationContext, "El producto no se pudo agregar a la factura", Toast.LENGTH_LONG).show()
+            }
         }
 
         //onButtonSaveBill
-        buttonAddVegetable.setOnClickListener {
+        buttonSaveBill.setOnClickListener {
             // Change bill state to 1
         }
     }
@@ -85,8 +91,12 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
     }
 
     override fun onItemClicked(vegetableDataType: VegetableDataType) {
+        selectedVegetable = vegetableDataType
         textViewSelectedVegetable.text = vegetableDataType.name.toString()
+        Toast.makeText(applicationContext, "Item Clicked", Toast.LENGTH_LONG).show()
         Log.e("#ERROR008","eee"+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillList())
+        editTextAmount.text.clear()
+        editTextPrice.text.clear()
     }
 
 

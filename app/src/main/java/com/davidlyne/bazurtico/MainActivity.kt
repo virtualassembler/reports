@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         navigationView.setNavigationItemSelectedListener(this)
 
         //Log.e("#000",""+TotalizerDatabase.PopulateDbAsyncTask(TotalizerDatabase.getTotalizerDatabase(applicationContext)))
-        Log.e("#001",""+TotalizerDatabase.getInstance(this)!!.getVegetableDAO().getVegetableList())
+        //Log.e("#001",""+TotalizerDatabase.getInstance(this)!!.getVegetableDAO().getVegetableList())
         Log.e("#002","eee"+TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList())
         Log.e("#003","test")
         //Log.e("#002","eee"+clientList2)

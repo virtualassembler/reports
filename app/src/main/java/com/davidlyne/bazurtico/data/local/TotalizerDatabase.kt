@@ -22,6 +22,7 @@ abstract class TotalizerDatabase : RoomDatabase() {
     abstract fun getBillDAO(): BillDao
     abstract fun getClientDAO(): ClientDao
     abstract fun getVegetableDAO(): VegetableDao
+    abstract fun getBillVegetableDAO(): BillVegetableDao
 
     //    companion object {
     //        fun getTotalizerDatabase(context: Context) = Room.databaseBuilder(context.applicationContext,

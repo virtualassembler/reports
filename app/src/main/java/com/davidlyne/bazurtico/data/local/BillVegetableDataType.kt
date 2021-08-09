@@ -12,16 +12,17 @@ import com.google.gson.annotations.SerializedName
  *
  * @author david.lyne
  */
+
 @Entity(tableName = "bill_vegetable")
 data class BillVegetableDataType(
         @ColumnInfo(name = "vegetableId")
         var vegetableId: Int,
         @ColumnInfo(name = "billId")
         var billId: Int,
-        @ColumnInfo(name = "name")
+        @ColumnInfo(name = "grams")
         var grams: Int,
         @ColumnInfo(name = "price")
-        var price: Double
+        var price: Float
 ) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
