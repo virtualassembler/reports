@@ -16,9 +16,16 @@ import com.davidlyne.bazurtico.data.local.VegetableDataType
 class VegetableRepository(private val context: Context) {
 
     private val vegetableList: List<VegetableDataType> get() = TotalizerDatabase.getInstance(context)!!.getVegetableDAO().getVegetableList()
+    private val selectedVegetableList: List<VegetableDataType> get() = TotalizerDatabase.getInstance(context)!!.getVegetableDAO().getSelectedVegetableList()
+
+
 
     fun requestVegetableList(): List<VegetableDataType> {
         return vegetableList
+    }
+
+    fun requestSelectedVegetableList(): List<VegetableDataType> {
+        return selectedVegetableList
     }
 
     /*

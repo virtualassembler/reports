@@ -11,7 +11,7 @@ import androidx.room.Query
  * to Access Database @Entity(tableName = "vegetable_table")
  * facilitates access to stored data with this methods
  *
- * @author david.mazo
+ * @author david.lyne
  */
 @Dao
 interface VegetableDao {
@@ -20,6 +20,10 @@ interface VegetableDao {
 
     @Query("SELECT * FROM vegetable")
     fun getVegetableList(): List<VegetableDataType>
+
+    @Query("SELECT vegetable.name,vegetable.id,vegetable.price FROM vegetable JOIN bill_vegetable JOIN bill WHERE bill.state = 2 AND vegetable.id=1")
+    //@Query("SELECT * FROM vegetable WHERE vegetable.id = 1")
+    fun getSelectedVegetableList(): List<VegetableDataType>
 
     @Query("SELECT * FROM vegetable WHERE vegetable.id=:id")
     fun getVegetableDetail(id: Int): VegetableDataType

@@ -13,10 +13,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
  * We will use this class to create other classes
  * This class is abstract because is implemented by Room
  *
- * @author david.mazo
+ * @author david.lyne
  */
 
-@Database(entities = [ClientDataType::class, VegetableDataType::class,BillDataType::class,BillVegetableDataType::class], version = 6, exportSchema = false)
+@Database(entities = [ClientDataType::class, VegetableDataType::class,BillDataType::class,BillVegetableDataType::class], version = 9, exportSchema = false)
 abstract class TotalizerDatabase : RoomDatabase() {
 
     abstract fun getBillDAO(): BillDao
@@ -34,7 +34,6 @@ abstract class TotalizerDatabase : RoomDatabase() {
 
     companion object {
         //fun getTotalizerDatabase(context: Context) = Room.databaseBuilder(context.applicationContext,TotalizerDatabase::class.java, "TotalizerDatabase").allowMainThreadQueries().build()
-
 
         private var instance: TotalizerDatabase? = null
 

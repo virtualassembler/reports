@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -64,6 +65,8 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         Log.e("#002","eee"+TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList())
         Log.e("#003","test")
         //Log.e("#002","eee"+clientList2)
+
+        SelectClientActivity().clearDatabase()
 
     }
 

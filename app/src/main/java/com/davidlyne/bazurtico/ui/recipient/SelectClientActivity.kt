@@ -27,8 +27,8 @@ class SelectClientActivity : ClientEvents, AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_client)
+        clearDatabase()
         setRecyclerViewSoccerLeagues()
-        TotalizerDatabase.getInstance(this)!!.getBillDAO().clearBillList()
     }
 
     private fun setRecyclerViewSoccerLeagues() {
@@ -69,8 +69,25 @@ class SelectClientActivity : ClientEvents, AppCompatActivity() {
     override fun onItemClicked(clientDataType: ClientDataType) {
         val intent = Intent(this, SelectVegetableActivity::class.java)
         Log.e("error001",""+clientDataType.id)
-        TotalizerDatabase.getInstance(this)!!.getBillDAO().insertBill(BillDataType(clientDataType.id,2,System.currentTimeMillis(),System.currentTimeMillis()))
+        var billId = TotalizerDatabase.getInstance(this)!!.getBillDAO().getLastBillId()
+        Log.e("IDde la ultima bill",""+billId)
+        var bill: BillDataType = BillDataType(clientDataType.id,2,System.currentTimeMillis(),System.currentTimeMillis())
+        TotalizerDatabase.getInstance(this)!!.getBillDAO().insertBill(bill)
         startActivity(intent)
     }
 
+    public fun clearDatabase(){
+        Log.e("bills ","bbb "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillList())
+        Log.e("bills with id ","bbb "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillListWithId())
+        var idUnsavedBill = TotalizerDatabase.getInstance(this)!!.getBillDAO().getUnsavedBill()
+        if(idUnsavedBill != null && idUnsavedBill > 0){
+            Log.e("ERROR5","el Id devuelto es "+idUnsavedBill)
+            Log.e("BILL_VEGETABLE_LIST","rrr "+TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().getBillVegetableList())
+            Log.e("BILL_LIST","bbb "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillList())
+            TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().clearBillVegetableListById(idUnsavedBill)
+            TotalizerDatabase.getInstance(this)!!.getBillDAO().clearBillList(idUnsavedBill)
+        }else{
+            Log.e("ERROR5","el Id devuelto es null")
+        }
+    }
 }

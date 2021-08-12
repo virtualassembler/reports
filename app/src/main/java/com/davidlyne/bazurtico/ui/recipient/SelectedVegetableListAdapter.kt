@@ -11,13 +11,11 @@ import com.davidlyne.bazurtico.ui.client.VegetableEvents
 import kotlinx.android.synthetic.main.list_item.view.*
 
 /**
- * SoccerLeagueListAdapter
+ * SelectedVegetableListAdapter
  *
- * Provides access to the SoccerLeague data items, makes a View for each SoccerLeague item
- *
- * @author david.mazo
+ * @author david.Lyne
  */
-class VegetableListAdapter(private val vegetableEvents: VegetableEvents) : RecyclerView.Adapter<VegetableListAdapter.ViewHolder>() {
+class SelectedVegetableListAdapter(private val vegetableEvents: VegetableEvents) : RecyclerView.Adapter<SelectedVegetableListAdapter.ViewHolder>() {
 
     private var listVegetable: List<VegetableDataType> = listOf()
 
@@ -49,7 +47,6 @@ class VegetableListAdapter(private val vegetableEvents: VegetableEvents) : Recyc
                     .override(1000, 1000)
                     .into(itemView.imageViewTeamBadge)
             view.setOnClickListener { listener.onItemClicked(vegetable) }
-
         }
     }
 }

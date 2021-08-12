@@ -43,7 +43,7 @@ class VegetableListAdapter(private val vegetableEvents: VegetableEvents) : Recyc
             itemView.textViewName.text = vegetable.name
             //itemView.textViewStadium.text = soccerLeague.telClient
             Glide.with(itemView)
-                    .load("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.eluniversal.com.mx%2Fmenu%2Fcomo-mantener-los-limones-frescos&psig=AOvVaw2yvqmCQPHorcvrfIs2kE8L&ust=1628471132038000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCPi5hO2doPICFQAAAAAdAAAAABAD")
+                    .load("https://media.mercola.com/assets/images/foodfacts/lemon-nutrition-facts.jpg")
                     .centerCrop()
                     .fitCenter()
                     .override(1000, 1000)
