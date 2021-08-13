@@ -27,8 +27,8 @@ class SelectClientActivity : ClientEvents, AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_client)
-        clearDatabase()
         setRecyclerViewSoccerLeagues()
+        clearDatabase()
     }
 
     private fun setRecyclerViewSoccerLeagues() {
@@ -46,24 +46,6 @@ class SelectClientActivity : ClientEvents, AppCompatActivity() {
             "listado de clientes",
             Snackbar.LENGTH_LONG
         ).show()
-        /*
-        soccerLeagueRepository = SoccerLeagueRepository(this)
-        if (hasConnection()) {
-            soccerLeagueListAdapter.addAll(soccerLeagueRepository.requestMovieReviewList(league))
-            Snackbar.make(
-                constraintLayoutMainActivity,
-                getString(R.string.movie_review_database_updated),
-                Snackbar.LENGTH_LONG
-            ).show()
-        } else {
-            soccerLeagueListAdapter.addAll(soccerLeagueRepository.getMovieReviewList())
-            Snackbar.make(
-                constraintLayoutMainActivity,
-                getString(R.string.not_network_connection),
-                Snackbar.LENGTH_LONG
-            ).show()
-        }
-        */
     }
 
     override fun onItemClicked(clientDataType: ClientDataType) {
@@ -77,15 +59,19 @@ class SelectClientActivity : ClientEvents, AppCompatActivity() {
     }
 
     public fun clearDatabase(){
+        Log.e("CLEAR","CLEAR DATABASE")
+        Log.e("UNSAVED BILLS","getUnsavedBillList.count() "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getUnsavedBillList().count())
+        Log.e("SAVED BILLS","getSavedBillList.count() "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getSavedBillList().count())
+        Log.e("TOTAL BILL","getBillList.count() "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillList().count())
+        Log.e("TOTAL BILL VEGETABLE","getBillVegetableList.count() "+TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().getBillVegetableList().count())
         Log.e("bills ","bbb "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillList())
         Log.e("bills with id ","bbb "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillListWithId())
         var idUnsavedBill = TotalizerDatabase.getInstance(this)!!.getBillDAO().getUnsavedBill()
-        if(idUnsavedBill != null && idUnsavedBill > 0){
-            Log.e("ERROR5","el Id devuelto es "+idUnsavedBill)
+        if(idUnsavedBill.id != null && idUnsavedBill.id > 0){
+            Log.e("ERROR5","el Id devuelto es "+idUnsavedBill.id)
             Log.e("BILL_VEGETABLE_LIST","rrr "+TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().getBillVegetableList())
-            Log.e("BILL_LIST","bbb "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillList())
-            TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().clearBillVegetableListById(idUnsavedBill)
-            TotalizerDatabase.getInstance(this)!!.getBillDAO().clearBillList(idUnsavedBill)
+            TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().clearUnsavedBillVegetableList(idUnsavedBill.id)
+            TotalizerDatabase.getInstance(this)!!.getBillDAO().clearUnsavedBillList(idUnsavedBill.id)
         }else{
             Log.e("ERROR5","el Id devuelto es null")
         }

@@ -30,7 +30,6 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_vegetable)
-        SelectClientActivity().clearDatabase()
         setRecyclerViewSoccerLeagues()
         // Filling bill headers
         bill = TotalizerDatabase.getInstance(this)!!.getBillDAO().getCurrentBill()

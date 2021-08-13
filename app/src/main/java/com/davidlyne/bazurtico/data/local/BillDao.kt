@@ -19,6 +19,12 @@ interface BillDao {
     @Query("SELECT * FROM bill")
     fun getBillList(): List<BillDataType>
 
+    @Query("SELECT * FROM bill WHERE state = 2")
+    fun getUnsavedBillList(): List<BillDataType>
+
+    @Query("SELECT * FROM bill WHERE state = 1")
+    fun getSavedBillList(): List<BillDataType>
+
     @Query("SELECT *,`id` FROM bill")
     fun getBillListWithId(): List<BillDataType>
 
@@ -30,7 +36,7 @@ interface BillDao {
     fun getBill(clientId: Int): BillDataType
 
     @Query("SELECT * FROM bill WHERE state = 2")
-    fun getUnsavedBill(): Int
+    fun getUnsavedBill(): BillDataType
 
     @Query("SELECT *,id FROM bill WHERE state=2")
     fun getCurrentBill(): BillDataType
@@ -41,11 +47,8 @@ interface BillDao {
     @Query("SELECT * FROM bill WHERE bill.id=:id")
     fun getBillDetail(id: Int): BillDataType
 
-    @Query("DELETE FROM bill_vegetable WHERE billId =:id")
-    fun clearBillVegetableList(id: Int)
-
-    @Query("DELETE FROM bill_vegetable WHERE billId = :id")
-    fun clearBillList(id : Int)
+    @Query("DELETE FROM bill WHERE id = :id")
+    fun clearUnsavedBillList(id : Int)
 
     /*
     //abstract fun insert(apply: BillDataType)

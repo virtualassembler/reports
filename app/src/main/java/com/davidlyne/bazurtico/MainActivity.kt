@@ -65,9 +65,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         Log.e("#002","eee"+TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList())
         Log.e("#003","test")
         //Log.e("#002","eee"+clientList2)
-
         SelectClientActivity().clearDatabase()
-
     }
 
     //ADDED

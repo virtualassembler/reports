@@ -29,5 +29,8 @@ interface BillVegetableDao {
     fun deleteAllBillVegetables()
 
     @Query("DELETE FROM bill_vegetable WHERE billId =:id")
+    fun clearUnsavedBillVegetableList(id: Int)
+
+    @Query("DELETE FROM bill_vegetable WHERE billId =:id")
     fun clearBillVegetableListById(id: Int)
 }
