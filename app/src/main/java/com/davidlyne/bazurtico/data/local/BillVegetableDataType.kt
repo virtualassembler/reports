@@ -20,9 +20,7 @@ data class BillVegetableDataType(
         @ColumnInfo(name = "billId")
         var billId: Int,
         @ColumnInfo(name = "grams")
-        var grams: Int,
-        @ColumnInfo(name = "price")
-        var price: Float
+        var grams: Int
 ) {
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")

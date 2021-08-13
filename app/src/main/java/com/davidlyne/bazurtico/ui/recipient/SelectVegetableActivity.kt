@@ -64,7 +64,7 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
         buttonAddVegetable.setOnClickListener {
             // Agrega este producto a la List de productos seleccionados
             if(textViewSelectedVegetable.text.isNotEmpty() && editTextAmount.text.isNotEmpty() && editTextPrice.text.isNotEmpty()){
-                val billVegetable = BillVegetableDataType(selectedVegetable.id,bill.id,Integer.parseInt(editTextAmount.text.toString().trim()) ,editTextPrice.text.toString().trim().toFloat())
+                val billVegetable = BillVegetableDataType(selectedVegetable.id,bill.id,Integer.parseInt(editTextAmount.text.toString().trim()))
                 TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().insert(billVegetable)
                 Toast.makeText(applicationContext, "vegetable added ", Toast.LENGTH_LONG).show()
                 // Setea el reciclerview con la lista de vegetales actualizada
@@ -84,6 +84,7 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
             // Change bill state to 1
             val b = bill
             TotalizerDatabase.getInstance(this)!!.getBillDAO().updateStatus(bill.id)
+            // Create and Download recipient  PDF
             // Go to main Activity
             this@SelectVegetableActivity.startActivity(Intent(this@SelectVegetableActivity, MainActivity::class.java))
         }

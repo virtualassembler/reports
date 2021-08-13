@@ -28,7 +28,6 @@ class SelectClientActivity : ClientEvents, AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_client)
         setRecyclerViewSoccerLeagues()
-        clearDatabase()
     }
 
     private fun setRecyclerViewSoccerLeagues() {
@@ -56,24 +55,5 @@ class SelectClientActivity : ClientEvents, AppCompatActivity() {
         var bill: BillDataType = BillDataType(clientDataType.id,2,System.currentTimeMillis(),System.currentTimeMillis())
         TotalizerDatabase.getInstance(this)!!.getBillDAO().insertBill(bill)
         startActivity(intent)
-    }
-
-    public fun clearDatabase(){
-        Log.e("CLEAR","CLEAR DATABASE")
-        Log.e("UNSAVED BILLS","getUnsavedBillList.count() "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getUnsavedBillList().count())
-        Log.e("SAVED BILLS","getSavedBillList.count() "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getSavedBillList().count())
-        Log.e("TOTAL BILL","getBillList.count() "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillList().count())
-        Log.e("TOTAL BILL VEGETABLE","getBillVegetableList.count() "+TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().getBillVegetableList().count())
-        Log.e("bills ","bbb "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillList())
-        Log.e("bills with id ","bbb "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillListWithId())
-        var idUnsavedBill = TotalizerDatabase.getInstance(this)!!.getBillDAO().getUnsavedBill()
-        if(idUnsavedBill.id != null && idUnsavedBill.id > 0){
-            Log.e("ERROR5","el Id devuelto es "+idUnsavedBill.id)
-            Log.e("BILL_VEGETABLE_LIST","rrr "+TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().getBillVegetableList())
-            TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().clearUnsavedBillVegetableList(idUnsavedBill.id)
-            TotalizerDatabase.getInstance(this)!!.getBillDAO().clearUnsavedBillList(idUnsavedBill.id)
-        }else{
-            Log.e("ERROR5","el Id devuelto es null")
-        }
     }
 }

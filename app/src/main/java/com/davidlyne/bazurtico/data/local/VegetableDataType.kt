@@ -3,7 +3,6 @@ package com.davidlyne.bazurtico.data.local
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
 
 /**
  * Dataclass
@@ -14,19 +13,17 @@ import com.google.gson.annotations.SerializedName
  */
 @Entity(tableName = "vegetable")
 data class VegetableDataType(
-        @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = "id")
-        var id: Int,
         @ColumnInfo(name = "name")
         var name: String?,
         @ColumnInfo(name = "price")
-        var price: Int
-//        @SerializedName("strEvent")
-//        var strEvent: String?
+        var price: Double
 ) {
-    /*
-    override fun toString(): String {
+        @PrimaryKey(autoGenerate = true)
+        @ColumnInfo(name = "id")
+        var id: Int = 0
+        /*
+        override fun toString(): String {
         return strEvent.toString()
-    }
-    */
+        }
+        */
 }

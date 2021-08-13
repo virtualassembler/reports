@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         Log.e("#002","eee"+TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList())
         Log.e("#003","test")
         //Log.e("#002","eee"+clientList2)
-        SelectClientActivity().clearDatabase()
+        clearDatabase()
     }
 
     //ADDED
@@ -87,6 +87,25 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    public fun clearDatabase(){
+        Log.e("CLEAR","CLEAR DATABASE")
+        Log.e("UNSAVED BILLS","getUnsavedBillList.count() "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getUnsavedBillList().count())
+        Log.e("SAVED BILLS","getSavedBillList.count() "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getSavedBillList().count())
+        Log.e("TOTAL BILL","getBillList.count() "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillList().count())
+        Log.e("TOTAL BILL VEGETABLE","getBillVegetableList.count() "+TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().getBillVegetableList().count())
+        Log.e("bills ","bbb "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillList())
+        Log.e("bills with id ","bbb "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillListWithId())
+        var idUnsavedBill = TotalizerDatabase.getInstance(this)!!.getBillDAO()?.getUnsavedBill()
+        if(idUnsavedBill == null || idUnsavedBill.id == 0){
+            Log.e("ERROR5","el Id devuelto es null")
+        }else{
+            Log.e("ERROR5","el Id devuelto es "+idUnsavedBill.id)
+            Log.e("BILL_VEGETABLE_LIST","rrr "+TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().getBillVegetableList())
+            TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().clearUnsavedBillVegetableList(idUnsavedBill.id)
+            TotalizerDatabase.getInstance(this)!!.getBillDAO().clearUnsavedBillList(idUnsavedBill.id)
+        }
     }
 
 }
