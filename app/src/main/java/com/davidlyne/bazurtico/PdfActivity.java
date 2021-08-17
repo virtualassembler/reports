@@ -61,6 +61,7 @@ public class PdfActivity extends AppCompatActivity {
         import android.view.Menu;
         import android.view.View;
         import android.widget.EditText;
+        import android.widget.TextView;
         import android.widget.Toast;
 
 
@@ -74,8 +75,11 @@ public class PdfActivity extends Activity implements Runnable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf);
-        //makeAndSharePDF();
-        Toast.makeText(this,"${applicationId}",Toast.LENGTH_LONG).show();
+        Bundle bundle = getIntent().getExtras();
+        TextView textViewConsecutive = (TextView)findViewById(R.id.textViewConsecutive);
+        if(bundle.getString("billId")!= null) {
+            Toast.makeText(this,"id bill: "+bundle.getString("billId"),Toast.LENGTH_LONG).show();
+        }
     }
 
     /** PDF Gen should run in own thread to not slow the GUI */
@@ -129,7 +133,6 @@ public class PdfActivity extends Activity implements Runnable {
 
             Uri uri = contentUri;
             String uriString = contentUri.toString();
-
 
             shareDocument(contentUri);
         } catch (IOException e) {

@@ -87,7 +87,10 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
             TotalizerDatabase.getInstance(this)!!.getBillDAO().updateStatus(bill.id)
             // Create and Download recipient  PDF
             // Go to main Activity
-            this@SelectVegetableActivity.startActivity(Intent(this@SelectVegetableActivity, PdfActivity::class.java))
+            val intent = Intent(this, PdfActivity::class.java)
+            intent.putExtra("billId", bill.id)
+            startActivity(intent)
+            //this@SelectVegetableActivity.startActivity(Intent(this@SelectVegetableActivity, PdfActivity::class.java))
         }
     }
 
