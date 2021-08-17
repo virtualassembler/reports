@@ -15,4 +15,8 @@
     <string name="original_name">Name</string>
     <string name="error_tag">Error tag</string>
 
+
+    <string name="pdf_hint">Enter text to be PDF\'d</string>
+    <string name="pdf_go">Save And Share</string>
+
 </resources>

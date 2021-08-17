@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.davidlyne.bazurtico.MainActivity
+import com.davidlyne.bazurtico.PdfActivity
 import com.davidlyne.bazurtico.R
 import com.davidlyne.bazurtico.data.local.*
 import com.davidlyne.bazurtico.repository.VegetableRepository
@@ -86,7 +87,7 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
             TotalizerDatabase.getInstance(this)!!.getBillDAO().updateStatus(bill.id)
             // Create and Download recipient  PDF
             // Go to main Activity
-            this@SelectVegetableActivity.startActivity(Intent(this@SelectVegetableActivity, MainActivity::class.java))
+            this@SelectVegetableActivity.startActivity(Intent(this@SelectVegetableActivity, PdfActivity::class.java))
         }
     }
 
