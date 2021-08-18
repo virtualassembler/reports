@@ -16,7 +16,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
  * @author david.lyne
  */
 
-@Database(entities = [ClientDataType::class, VegetableDataType::class,BillDataType::class,BillVegetableDataType::class], version = 12, exportSchema = false)
+@Database(entities = [ClientDataType::class, VegetableDataType::class,BillDataType::class,BillVegetableDataType::class], version = 13, exportSchema = false)
 abstract class TotalizerDatabase : RoomDatabase() {
 
     abstract fun getBillDAO(): BillDao
@@ -30,7 +30,6 @@ abstract class TotalizerDatabase : RoomDatabase() {
     //                .allowMainThreadQueries()
     //                .build()
     //    }
-
 
     companion object {
         //fun getTotalizerDatabase(context: Context) = Room.databaseBuilder(context.applicationContext,TotalizerDatabase::class.java, "TotalizerDatabase").allowMainThreadQueries().build()

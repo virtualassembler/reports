@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         Log.e("#003","test")
         //Log.e("#002","eee"+clientList2)
         clearDatabase()
-        this@MainActivity.startActivity(Intent(this@MainActivity, PdfActivity::class.java))
+        //this@MainActivity.startActivity(Intent(this@MainActivity, PdfActivity::class.java))
 
     }
 

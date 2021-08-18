@@ -88,7 +88,7 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
             // Create and Download recipient  PDF
             // Go to main Activity
             val intent = Intent(this, PdfActivity::class.java)
-            intent.putExtra("billId", bill.id)
+            intent.putExtra("billId", bill.id.toString())
             startActivity(intent)
             //this@SelectVegetableActivity.startActivity(Intent(this@SelectVegetableActivity, PdfActivity::class.java))
         }

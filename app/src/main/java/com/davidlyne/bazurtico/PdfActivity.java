@@ -43,6 +43,8 @@ public class PdfActivity extends AppCompatActivity {
         import java.io.FileOutputStream;
         import java.io.IOException;
         import java.io.OutputStream;
+        import java.util.ArrayList;
+        import java.util.List;
 
         import android.app.Activity;
         import android.app.Application;
@@ -58,11 +60,19 @@ public class PdfActivity extends AppCompatActivity {
         import android.print.PrintAttributes.Margins;
         import android.print.PrintAttributes.Resolution;
         import android.print.pdf.PrintedPdfDocument;
+        import android.util.Log;
+        import android.view.Gravity;
         import android.view.Menu;
         import android.view.View;
+        import android.view.ViewGroup;
         import android.widget.EditText;
+        import android.widget.LinearLayout;
+        import android.widget.RelativeLayout;
         import android.widget.TextView;
         import android.widget.Toast;
+
+        import com.davidlyne.bazurtico.data.local.VegetableDataType;
+        import com.davidlyne.bazurtico.data.local.VegetableListKt;
 
 
 public class PdfActivity extends Activity implements Runnable {
@@ -79,6 +89,30 @@ public class PdfActivity extends Activity implements Runnable {
         TextView textViewConsecutive = (TextView)findViewById(R.id.textViewConsecutive);
         if(bundle.getString("billId")!= null) {
             Toast.makeText(this,"id bill: "+bundle.getString("billId"),Toast.LENGTH_LONG).show();
+        }
+
+        RelativeLayout rl = findViewById(R.id.textArea);
+        //Create list
+        List<VegetableDataType> vegetableList = new ArrayList<>();
+        vegetableList = VegetableListKt.getDefaultVegetableList();
+        // Create TextView programmatically.
+        TextView textView = new TextView(this);
+        textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        textView.setGravity(Gravity.CENTER);
+        String items = "";
+        for(VegetableDataType vegetable : vegetableList){
+            items = items+vegetable.getName().toString()+"\n";
+        }
+        textView.setText(items);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("Sociales","sociales");
+            }
+        });
+        // Add TextView to LinearLayout
+        if (rl != null) {
+            rl.addView(textView);
         }
     }
 
