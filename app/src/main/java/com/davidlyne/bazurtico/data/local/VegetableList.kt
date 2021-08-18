@@ -9,7 +9,7 @@ package com.davidlyne.bazurtico.data.local
 
 val vegetableList = listOf(
     VegetableDataType("Limon",80.0),
-    VegetableDataType("Apio",2.8),
+    VegetableDataType("Apio",3.0),
     VegetableDataType("Cilantro",6.6),
     VegetableDataType("Cebollin",3.6),
     VegetableDataType("Cebolla Blanca",2.9),
@@ -25,13 +25,13 @@ val vegetableList = listOf(
     VegetableDataType("Zanahoria",2.4),
     VegetableDataType("Habichuela",3.3),
     VegetableDataType("Ahuyama",1.5),
-    VegetableDataType("Aji",6.6),
+    VegetableDataType("Aji",5.8),
     VegetableDataType("Pimenton Rojo",4.4),
     VegetableDataType("Pimenton Verde",4.2),
     VegetableDataType("Ajo",9.7),
     VegetableDataType("Coco",2.8),
     VegetableDataType("Tomate de Arbol",3.8),
-    VegetableDataType("Mora",2.2),
+    VegetableDataType("Mora",2.4),
     VegetableDataType("Maracuya",3.8),
     VegetableDataType("Guayaba",2.8),
     VegetableDataType("Pepino",1.5)

@@ -6,17 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity"
-    android:id="@+id/textArea">
-
-    <EditText
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/pdf_hint"
-        android:singleLine="false"
-        android:lines="8"
-        />
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,21 +32,20 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewBill"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/textArea">
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="150dp"
-                android:id="@+id/total">
+                android:id="@+id/textViewTotal">
             </TextView>
         </LinearLayout>
 
@@ -75,7 +64,17 @@
                 tools:ignore="OnClick" />
         </LinearLayout>
 
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/pdf_hint"
+            android:singleLine="false"
+            android:lines="8"
+            />
+
     </LinearLayout>
+
+
 
 
 

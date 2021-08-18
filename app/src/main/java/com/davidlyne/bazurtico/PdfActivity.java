@@ -87,21 +87,26 @@ public class PdfActivity extends Activity implements Runnable {
         setContentView(R.layout.activity_pdf);
         Bundle bundle = getIntent().getExtras();
         TextView textViewConsecutive = (TextView)findViewById(R.id.textViewConsecutive);
+        TextView textViewClientName = (TextView)findViewById(R.id.textViewClientName);
+        TextView textViewTotal = (TextView)findViewById(R.id.textViewTotal);
         if(bundle.getString("billId")!= null) {
             Toast.makeText(this,"id bill: "+bundle.getString("billId"),Toast.LENGTH_LONG).show();
+            textViewConsecutive.setText(""+bundle.getString("billId"));
+            textViewTotal.setText(""+bundle.getString("billId"));
         }
 
-        RelativeLayout rl = findViewById(R.id.textArea);
+        LinearLayout linearLayout = findViewById(R.id.textArea);
         //Create list
         List<VegetableDataType> vegetableList = new ArrayList<>();
         vegetableList = VegetableListKt.getDefaultVegetableList();
         // Create TextView programmatically.
         TextView textView = new TextView(this);
         textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        textView.setGravity(Gravity.CENTER);
+        textView.setGravity(Gravity.LEFT);
+        textView.setTextSize(8);
         String items = "";
         for(VegetableDataType vegetable : vegetableList){
-            items = items+vegetable.getName().toString()+"\n";
+            items = items+vegetable.getId()+" \u0020\u0020 "+vegetable.getName().toString()+" \u0020\u0020\u0020\u0020\u0020 "+vegetable.getPrice()+"\n";
         }
         textView.setText(items);
         textView.setOnClickListener(new View.OnClickListener() {
@@ -111,8 +116,8 @@ public class PdfActivity extends Activity implements Runnable {
             }
         });
         // Add TextView to LinearLayout
-        if (rl != null) {
-            rl.addView(textView);
+        if (linearLayout != null) {
+            linearLayout.addView(textView);
         }
     }
 
@@ -129,7 +134,7 @@ public class PdfActivity extends Activity implements Runnable {
         PrintAttributes printAttrs = new PrintAttributes.Builder().
                 setColorMode(PrintAttributes.COLOR_MODE_COLOR).
                 setMediaSize(PrintAttributes.MediaSize.NA_LETTER).
-                setResolution(new Resolution("zooey", PRINT_SERVICE, 300, 300)).
+                setResolution(new Resolution("zooey", PRINT_SERVICE, 300, 500)).
                 setMinMargins(Margins.NO_MARGINS).
                 build();
         PdfDocument document = new PrintedPdfDocument(this, printAttrs);
