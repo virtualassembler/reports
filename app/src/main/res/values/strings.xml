@@ -18,5 +18,7 @@
 
     <string name="pdf_hint">Enter text to be PDF\'d</string>
     <string name="pdf_go">Save And Share</string>
+    <string name="consecutive">consecutive</string>
+    <string name="client">Client</string>
 
 </resources>

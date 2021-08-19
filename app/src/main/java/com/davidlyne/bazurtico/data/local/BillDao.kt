@@ -35,8 +35,8 @@ interface BillDao {
     fun getBill(clientId: Int): BillDataType
 
     //@Query("SELECT client.nameClient FROM client WHERE id=1")
-    @Query("SELECT client.nameClient FROM client JOIN bill ON bill.clientId = client.id WHERE bill.id=1")
-    fun getClientNameByBillId(): String
+    @Query("SELECT client.nameClient FROM client JOIN bill ON bill.clientId = client.id WHERE bill.id=:billId")
+    fun getClientNameByBillId(billId: String): String
 
     /*
     @Query("SELECT client.nameClient FROM client JOIN bill ON client.id = bill.clientId  WHERE bill.id=:billId")

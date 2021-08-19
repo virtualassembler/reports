@@ -7,10 +7,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import android.app.Activity;
-import android.app.Application;
 import android.content.Intent;
 import androidx.core.content.FileProvider;
-//import android.content.FileProvider;
 import android.graphics.pdf.PdfDocument;
 import android.graphics.pdf.PdfDocument.Page;
 import android.graphics.pdf.PdfDocument.PageInfo;
@@ -25,18 +23,11 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.davidlyne.bazurtico.data.local.ClientDataType;
-import com.davidlyne.bazurtico.data.local.ClientNameDataType;
 import com.davidlyne.bazurtico.data.local.TotalizerDatabase;
 import com.davidlyne.bazurtico.data.local.VegetableDataType;
 import com.davidlyne.bazurtico.data.local.VegetableListKt;
-
 
 public class PdfActivity extends Activity implements Runnable {
 
@@ -49,22 +40,24 @@ public class PdfActivity extends Activity implements Runnable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf);
         Bundle bundle = getIntent().getExtras();
-        TextView textViewConsecutive = (TextView)findViewById(R.id.textViewConsecutive);
+        //TextView textViewConsecutive = (TextView)findViewById(R.id.textViewConsecutive);
         TextView textViewClientName = (TextView)findViewById(R.id.textViewClientName);
         TextView textViewTotal = (TextView)findViewById(R.id.textViewTotal);
 
         if(bundle.getString("billId")!= null) {
-            int billId = bundle.getInt("billId");
-            Toast.makeText(this,"id bill: "+bundle.getString("billId"),Toast.LENGTH_LONG).show();
-            textViewConsecutive.setText(""+bundle.getString("billId"));
-            textViewTotal.setText(""+bundle.getString("billId"));
-            String clientId = TotalizerDatabase.Companion.getInstance(this).getBillDAO().getClientNameByBillId();
-            String clientId2 = TotalizerDatabase.Companion.getInstance(this).getBillDAO().getClientNameByBillId();
+            String billId = bundle.getString("billId");
+            //Toast.makeText(this,"id bill: "+bundle.getString("billId"),Toast.LENGTH_LONG).show();
+            //textViewConsecutive.setText(""+billId);
+
+            //String nameClient = TotalizerDatabase.Companion.getInstance(this).getBillDAO().getClientNameByBillId(billId);
+            String nameClient = TotalizerDatabase.Companion.getInstance(this).getBillDAO().getClientNameByBillId(billId);
+            textViewClientName.setText(nameClient);
+            textViewTotal.setText("TOTAL: "+nameClient);
             //String d = TotalizerDatabase.Companion.getInstance(this).getVegetableDAO().getVegetableList().toString();
             //String d2 = TotalizerDatabase.Companion.getInstance(this).getVegetableDAO().getVegetableList().toString();
         }
 
-        LinearLayout linearLayout = findViewById(R.id.textArea);
+        LinearLayout linearLayout = findViewById(R.id.linearLayoutVegetableList);
         //Create list
         List<VegetableDataType> vegetableList = new ArrayList<>();
         vegetableList = VegetableListKt.getDefaultVegetableList();
@@ -75,7 +68,7 @@ public class PdfActivity extends Activity implements Runnable {
         textView.setTextSize(8);
         String items = "";
         for(VegetableDataType vegetable : vegetableList){
-            items = items+vegetable.getId()+" \u0020\u0020 "+vegetable.getName().toString()+" \u0020\u0020\u0020\u0020\u0020 "+vegetable.getPrice()+"\n";
+            items = items+vegetable.getId()+" \u0020\u0020 "+vegetable.getName().toString()+" \u0020\u0020\u0020\u0020\u0020 "+ (int)(Math.round(vegetable.getPrice()*1000))+"\n";
         }
         textView.setText(items);
         textView.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +101,7 @@ public class PdfActivity extends Activity implements Runnable {
         PdfDocument document = new PrintedPdfDocument(this, printAttrs);
 
         // crate a page description
-        PageInfo pageInfo = new PageInfo.Builder(300, 300, 1).create();
+        PageInfo pageInfo = new PageInfo.Builder(300, 500, 1).create();
 
         // create a new page from the PageInfo
         Page page = document.startPage(pageInfo);
@@ -136,10 +129,8 @@ public class PdfActivity extends Activity implements Runnable {
             document.writeTo(os);
             document.close();
             os.close();
-
+            //Print Uri provider
             Uri uri = contentUri;
-            String uriString = contentUri.toString();
-
             shareDocument(contentUri);
         } catch (IOException e) {
             throw new RuntimeException("Error generating file", e);
@@ -165,7 +156,6 @@ public class PdfActivity extends Activity implements Runnable {
         return true;
     }
 }
-
 
 /*
 import androidx.appcompat.app.AppCompatActivity;
