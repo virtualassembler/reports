@@ -18,6 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.davidlyne.bazurtico.data.local.TotalizerDatabase
+import com.davidlyne.bazurtico.data.local.VegetableDataType
 import com.davidlyne.bazurtico.ui.client.CreateClientActivity
 import com.davidlyne.bazurtico.ui.recipient.SelectVegetableActivity
 import com.davidlyne.bazurtico.ui.recipient.SelectClientActivity
@@ -33,9 +34,14 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     //private val clientList: List<ClientDataType>  get() = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList()
     //private val clientList2: List<ClientDataType>  get() = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList()
 
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //TotalizerDatabase.getInstance(this)!!.getVegetableDAO().alterVegetableTable();
+        Log.e("FFF",""+TotalizerDatabase.getInstance(this)!!.getVegetableDAO().getVegetableList())
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 

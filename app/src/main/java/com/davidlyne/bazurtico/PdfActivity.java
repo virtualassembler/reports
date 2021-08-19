@@ -34,6 +34,7 @@ public class PdfActivity extends Activity implements Runnable {
     private Intent mShareIntent;
 
     private OutputStream os;
+    TextView textViewTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +43,14 @@ public class PdfActivity extends Activity implements Runnable {
         Bundle bundle = getIntent().getExtras();
         //TextView textViewConsecutive = (TextView)findViewById(R.id.textViewConsecutive);
         TextView textViewClientName = (TextView)findViewById(R.id.textViewClientName);
-        TextView textViewTotal = (TextView)findViewById(R.id.textViewTotal);
-
+        textViewTotal = (TextView)findViewById(R.id.textViewTotal);
         if(bundle.getString("billId")!= null) {
             String billId = bundle.getString("billId");
             //Toast.makeText(this,"id bill: "+bundle.getString("billId"),Toast.LENGTH_LONG).show();
             //textViewConsecutive.setText(""+billId);
-
             //String nameClient = TotalizerDatabase.Companion.getInstance(this).getBillDAO().getClientNameByBillId(billId);
             String nameClient = TotalizerDatabase.Companion.getInstance(this).getBillDAO().getClientNameByBillId(billId);
             textViewClientName.setText(nameClient);
-            textViewTotal.setText("TOTAL: "+nameClient);
             //String d = TotalizerDatabase.Companion.getInstance(this).getVegetableDAO().getVegetableList().toString();
             //String d2 = TotalizerDatabase.Companion.getInstance(this).getVegetableDAO().getVegetableList().toString();
         }
@@ -67,8 +65,16 @@ public class PdfActivity extends Activity implements Runnable {
         textView.setGravity(Gravity.LEFT);
         textView.setTextSize(8);
         String items = "";
+        int price = 0;
+        int total = 0;
         for(VegetableDataType vegetable : vegetableList){
-            items = items+vegetable.getId()+" \u0020\u0020 "+vegetable.getName().toString()+" \u0020\u0020\u0020\u0020\u0020 "+ (int)(Math.round(vegetable.getPrice()*1000))+"\n";
+            if(vegetable.isUnit() == 1){
+                price = (int)(Math.round(vegetable.getPrice()));
+            }else{
+                price = (int)(Math.round(vegetable.getPrice()*1000));
+            }
+            total = total+price;
+            items = items+vegetable.getId()+" \u0020\u0020 "+vegetable.getName().toString()+" \u0020\u0020\u0020\u0020\u0020 "+price+"\n";
         }
         textView.setText(items);
         textView.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +87,7 @@ public class PdfActivity extends Activity implements Runnable {
         if (linearLayout != null) {
             linearLayout.addView(textView);
         }
+        textViewTotal.setText("Total: "+total);
     }
 
     /** PDF Gen should run in own thread to not slow the GUI */
@@ -116,7 +123,6 @@ public class PdfActivity extends Activity implements Runnable {
 
         // Here you could add more pages in a longer doc app, but you'd have
         // to handle page-breaking yourself in e.g., write your own word processor...
-
         // Now write the PDF document to a file; it actually needs to be a file
         // since the Share mechanism can't accept a byte[]. though it can
         // accept a String/CharSequence. Meh.
