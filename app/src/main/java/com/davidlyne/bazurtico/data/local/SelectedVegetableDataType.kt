@@ -13,27 +13,18 @@ import androidx.room.Update
  * @author david.lyne
  */
 
-
-//@Update(entity = VegetableDataType::class)
-//fun update(obj: VegetableDataType) {
-//}
-
-
-@Entity(tableName = "vegetable")
-data class VegetableDataType(
+@Entity(tableName = "selected_vegetable")
+data class SelectedVegetableDataType(
         @ColumnInfo(name = "name")
         var name: String?,
         @ColumnInfo(name = "price")
         var price: Double,
         @ColumnInfo(name = "isUnit")
-        var isUnit: Int
-) {
-        @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = "id")
-        var id: Int = 0
-        /*
-        override fun toString(): String {
-        return strEvent.toString()
-        }
-        */
-}
+        var isUnit: Int,
+        @ColumnInfo(name = "vegetableId")
+        var vegetableId: Int,
+        @ColumnInfo(name = "billId")
+        var billId: Int,
+        @ColumnInfo(name = "grams")
+        var grams: Int
+)

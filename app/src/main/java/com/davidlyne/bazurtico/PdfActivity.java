@@ -25,6 +25,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.davidlyne.bazurtico.data.local.BillVegetableDataType;
+import com.davidlyne.bazurtico.data.local.SelectedVegetableDataType;
 import com.davidlyne.bazurtico.data.local.TotalizerDatabase;
 import com.davidlyne.bazurtico.data.local.VegetableDataType;
 import com.davidlyne.bazurtico.data.local.VegetableListKt;
@@ -50,16 +53,20 @@ public class PdfActivity extends Activity implements Runnable {
             //textViewConsecutive.setText(""+billId);
             //String nameClient = TotalizerDatabase.Companion.getInstance(this).getBillDAO().getClientNameByBillId(billId);
             String nameClient = TotalizerDatabase.Companion.getInstance(this).getBillDAO().getClientNameByBillId(billId);
-            textViewClientName.setText(nameClient);
+            textViewClientName.setText("\u0020\u0020"+nameClient);
             //String d = TotalizerDatabase.Companion.getInstance(this).getVegetableDAO().getVegetableList().toString();
             //String d2 = TotalizerDatabase.Companion.getInstance(this).getVegetableDAO().getVegetableList().toString();
         }
 
         LinearLayout linearLayout = findViewById(R.id.linearLayoutVegetableList);
         //Create list
-        List<VegetableDataType> vegetableList = new ArrayList<>();
-        vegetableList = VegetableListKt.getDefaultVegetableList();
-        List<VegetableDataType> vegetableList2 = TotalizerDatabase.Companion.getInstance(this).getVegetableDAO().getVegetableList();
+        //List<VegetableDataType> vegetableList = new ArrayList<>();
+        //vegetableList = VegetableListKt.getDefaultVegetableList();
+        List<SelectedVegetableDataType> selectedVegetableList = new ArrayList<>();
+        selectedVegetableList = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getSelectedVegetableList();
+        int cant = selectedVegetableList.size();
+        List<BillVegetableDataType> registros = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getBillVegetableList();
+        int reg = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getBillVegetableList().size();
         // Create TextView programmatically.
         TextView textView = new TextView(this);
         textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -68,14 +75,14 @@ public class PdfActivity extends Activity implements Runnable {
         String items = "";
         int price = 0;
         int total = 0;
-        for(VegetableDataType vegetable : vegetableList){
+        for(SelectedVegetableDataType vegetable : selectedVegetableList){
             if(vegetable.isUnit() == 1){
                 price = (int)(Math.round(vegetable.getPrice()));
             }else{
                 price = (int)(Math.round(vegetable.getPrice()*1000));
             }
             total = total+price;
-            items = items+vegetable.getId()+" \u0020\u0020 "+vegetable.getName().toString()+" \u0020\u0020\u0020\u0020\u0020 "+price+"\n";
+            items = items+vegetable.getBillId()+" \u0020\u0020 "+vegetable.getName().toString()+" \u0020\u0020\u0020\u0020\u0020 "+price+"\n \u0020\u0020";
         }
         textView.setText(items);
         textView.setOnClickListener(new View.OnClickListener() {
