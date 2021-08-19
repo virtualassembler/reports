@@ -1,78 +1,41 @@
 package com.davidlyne.bazurtico;
 
-
-/*
-import androidx.appcompat.app.AppCompatActivity;
-
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import android.app.Activity;
+import android.app.Application;
+import android.content.Intent;
+import androidx.core.content.FileProvider;
+//import android.content.FileProvider;
+import android.graphics.pdf.PdfDocument;
+import android.graphics.pdf.PdfDocument.Page;
+import android.graphics.pdf.PdfDocument.PageInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.print.PrintAttributes;
+import android.print.PrintAttributes.Margins;
+import android.print.PrintAttributes.Resolution;
+import android.print.pdf.PrintedPdfDocument;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
-public class PdfActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pdf);
-    }
-}
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        import java.io.File;
-        import java.io.FileOutputStream;
-        import java.io.IOException;
-        import java.io.OutputStream;
-        import java.util.ArrayList;
-        import java.util.List;
-
-        import android.app.Activity;
-        import android.app.Application;
-        import android.content.Intent;
-        import androidx.core.content.FileProvider;
-        //import android.content.FileProvider;
-        import android.graphics.pdf.PdfDocument;
-        import android.graphics.pdf.PdfDocument.Page;
-        import android.graphics.pdf.PdfDocument.PageInfo;
-        import android.net.Uri;
-        import android.os.Bundle;
-        import android.print.PrintAttributes;
-        import android.print.PrintAttributes.Margins;
-        import android.print.PrintAttributes.Resolution;
-        import android.print.pdf.PrintedPdfDocument;
-        import android.util.Log;
-        import android.view.Gravity;
-        import android.view.Menu;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.EditText;
-        import android.widget.LinearLayout;
-        import android.widget.RelativeLayout;
-        import android.widget.TextView;
-        import android.widget.Toast;
-
-        import com.davidlyne.bazurtico.data.local.VegetableDataType;
-        import com.davidlyne.bazurtico.data.local.VegetableListKt;
+import com.davidlyne.bazurtico.data.local.ClientDataType;
+import com.davidlyne.bazurtico.data.local.ClientNameDataType;
+import com.davidlyne.bazurtico.data.local.TotalizerDatabase;
+import com.davidlyne.bazurtico.data.local.VegetableDataType;
+import com.davidlyne.bazurtico.data.local.VegetableListKt;
 
 
 public class PdfActivity extends Activity implements Runnable {
@@ -89,10 +52,16 @@ public class PdfActivity extends Activity implements Runnable {
         TextView textViewConsecutive = (TextView)findViewById(R.id.textViewConsecutive);
         TextView textViewClientName = (TextView)findViewById(R.id.textViewClientName);
         TextView textViewTotal = (TextView)findViewById(R.id.textViewTotal);
+
         if(bundle.getString("billId")!= null) {
+            int billId = bundle.getInt("billId");
             Toast.makeText(this,"id bill: "+bundle.getString("billId"),Toast.LENGTH_LONG).show();
             textViewConsecutive.setText(""+bundle.getString("billId"));
             textViewTotal.setText(""+bundle.getString("billId"));
+            String clientId = TotalizerDatabase.Companion.getInstance(this).getBillDAO().getClientNameByBillId();
+            String clientId2 = TotalizerDatabase.Companion.getInstance(this).getBillDAO().getClientNameByBillId();
+            //String d = TotalizerDatabase.Companion.getInstance(this).getVegetableDAO().getVegetableList().toString();
+            //String d2 = TotalizerDatabase.Companion.getInstance(this).getVegetableDAO().getVegetableList().toString();
         }
 
         LinearLayout linearLayout = findViewById(R.id.textArea);
@@ -127,7 +96,6 @@ public class PdfActivity extends Activity implements Runnable {
     }
 
     public void run() {
-
         // Create a shiny new (but blank) PDF document in memory
         // We want it to optionally be printable, so add PrintAttributes
         // and use a PrintedPdfDocument. Simpler: new PdfDocument().
@@ -147,7 +115,6 @@ public class PdfActivity extends Activity implements Runnable {
 
         // repaint the user's text into the page
         View content = findViewById(R.id.textArea);
-
 
         content.draw(page.getCanvas());
 
@@ -198,3 +165,19 @@ public class PdfActivity extends Activity implements Runnable {
         return true;
     }
 }
+
+
+/*
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class PdfActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pdf);
+    }
+}
+*/
