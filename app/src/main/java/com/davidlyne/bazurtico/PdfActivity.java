@@ -59,6 +59,7 @@ public class PdfActivity extends Activity implements Runnable {
         //Create list
         List<VegetableDataType> vegetableList = new ArrayList<>();
         vegetableList = VegetableListKt.getDefaultVegetableList();
+        List<VegetableDataType> vegetableList2 = TotalizerDatabase.Companion.getInstance(this).getVegetableDAO().getVegetableList();
         // Create TextView programmatically.
         TextView textView = new TextView(this);
         textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
