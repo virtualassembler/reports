@@ -22,6 +22,7 @@ import com.davidlyne.bazurtico.data.local.VegetableDataType
 import com.davidlyne.bazurtico.ui.client.CreateClientActivity
 import com.davidlyne.bazurtico.ui.recipient.SelectVegetableActivity
 import com.davidlyne.bazurtico.ui.recipient.SelectClientActivity
+import com.davidlyne.bazurtico.ui.report.TotalReportActivity
 import kotlinx.android.synthetic.main.activity_create_client.*
 
 class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
@@ -81,7 +82,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         when (item.itemId) {
             R.id.nav_home -> this@MainActivity.startActivity(Intent(this@MainActivity, CreateClientActivity::class.java))
             R.id.nav_gallery -> this@MainActivity.startActivity(Intent(this@MainActivity, SelectClientActivity::class.java))
-            R.id.nav_slideshow -> Toast.makeText(this, "Clicked item three", Toast.LENGTH_SHORT).show()
+            R.id.nav_slideshow -> this@MainActivity.startActivity(Intent(this@MainActivity, TotalReportActivity::class.java))
         }
         return true
     }

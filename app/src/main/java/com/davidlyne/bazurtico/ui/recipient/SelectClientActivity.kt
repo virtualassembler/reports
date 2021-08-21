@@ -15,6 +15,10 @@ import com.davidlyne.bazurtico.repository.ClientRepository
 import com.davidlyne.bazurtico.ui.client.ClientEvents
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_select_client.*
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.util.*
 
 class SelectClientActivity : ClientEvents, AppCompatActivity() {
 
@@ -46,6 +50,15 @@ class SelectClientActivity : ClientEvents, AppCompatActivity() {
             Snackbar.LENGTH_LONG
         ).show()
     }
+
+    //    fun convertDateToLong(): Date {
+    //
+    //
+    //        //var date = LocalDate.parse("2018-12-12")
+    //        var date =
+    //
+    //        return date;
+    //    }
 
     override fun onItemClicked(clientDataType: ClientDataType) {
         val intent = Intent(this, SelectVegetableActivity::class.java)

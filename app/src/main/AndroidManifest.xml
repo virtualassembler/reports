@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PdfActivity"></activity>
+        <activity android:name=".ui.report.TotalReportActivity"></activity>
+        <activity android:name=".PdfActivity" />
         <activity android:name=".ui.recipient.ClientDetailActivity" />
         <activity android:name=".ui.recipient.SelectVegetableActivity" />
         <activity android:name=".ui.recipient.SelectClientActivity" />
@@ -29,6 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.davidlyne.provider"
