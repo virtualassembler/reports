@@ -64,6 +64,9 @@ public class TotalReportActivity extends Activity implements Runnable {
         //int total = 0;
         int vegetableId;
         int vegetableAmmount = 0;
+        int myInt = 1;
+        List<Integer> deatomizedVegetable = new ArrayList<Integer>();
+
         List<VegetableDataType> vegetableList = new ArrayList<>();
         vegetableList = TotalizerDatabase.Companion.getInstance(this).getVegetableDAO().getVegetableList();
         for(VegetableDataType vegetable : vegetableList) {
@@ -71,6 +74,7 @@ public class TotalReportActivity extends Activity implements Runnable {
             for (SelectedVegetableDataType selectedVegetable : todaySelectedVegetableList) {
                 if(vegetableId == selectedVegetable.getVegetableId()){
                     vegetableAmmount = vegetableAmmount+selectedVegetable.getGrams();
+                    deatomizedVegetable.add(selectedVegetable.getGrams());
                     /*
                     if (selectedVegetable.isUnit() == 1) {
                         price = (int) (Math.round(selectedVegetable.getPrice()));
@@ -79,7 +83,7 @@ public class TotalReportActivity extends Activity implements Runnable {
                     }
                     total = total + price;
                     */
-                    items = items + "\n \u0020\u0020 Cant: "+vegetableAmmount+" \u0020\u0020 "+selectedVegetable.getName()+" \u0020\u0020\u0020\u0020\u0020 "+"\n \u0020\u0020";
+                    items = items + "\n \n \u0020\u0020 "+selectedVegetable.getName()+" \u0020\u0020\u0020\u0020\u0020 "+vegetableAmmount+"\n \u0020\u0020"+deatomizedVegetable.toString();
                 }
             }
         }
@@ -170,20 +174,3 @@ public class TotalReportActivity extends Activity implements Runnable {
         return true;
     }
 }
-
-/*
-package com.davidlyne.bazurtico.ui.report;
-
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import com.davidlyne.bazurtico.R;
-
-public class TotalReportActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_total_report);
-    }
-}
-*/
