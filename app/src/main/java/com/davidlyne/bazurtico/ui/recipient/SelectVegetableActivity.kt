@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.davidlyne.bazurtico.MainActivity
 import com.davidlyne.bazurtico.PdfActivity
 import com.davidlyne.bazurtico.R
 import com.davidlyne.bazurtico.data.local.*
@@ -64,7 +63,7 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
     private fun setButtonAdd(){
         buttonAddVegetable.setOnClickListener {
             // Agrega este producto a la List de productos seleccionados
-            if(textViewSelectedVegetable.text.isNotEmpty() && editTextAmount.text.isNotEmpty() && editTextPrice.text.isNotEmpty()){
+            if(textViewSelectedVegetable.text.isNotEmpty() && editTextAmount.text.isNotEmpty() && editTextVegetablePrice.text.isNotEmpty()){
                 val billVegetable = BillVegetableDataType(selectedVegetable.id,bill.id,Integer.parseInt(editTextAmount.text.toString().trim()))
                 TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().insert(billVegetable)
                 Toast.makeText(applicationContext, "vegetable added ", Toast.LENGTH_LONG).show()
@@ -73,7 +72,7 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
                 //Clear Selected Vegetable UI fields
                 textViewSelectedVegetable.text = ""
                 editTextAmount.text.clear()
-                editTextPrice.text.clear()
+                editTextVegetablePrice.text.clear()
             }else{
                 Toast.makeText(applicationContext, "El producto no se pudo agregar a la factura", Toast.LENGTH_LONG).show()
             }

@@ -23,6 +23,7 @@ import com.davidlyne.bazurtico.ui.client.CreateClientActivity
 import com.davidlyne.bazurtico.ui.recipient.SelectVegetableActivity
 import com.davidlyne.bazurtico.ui.recipient.SelectClientActivity
 import com.davidlyne.bazurtico.ui.report.TotalReportActivity
+import com.davidlyne.bazurtico.ui.vegetable.CreateVegetableActivity
 import kotlinx.android.synthetic.main.activity_create_client.*
 import java.util.*
 
@@ -83,6 +84,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
             R.id.nav_home -> this@MainActivity.startActivity(Intent(this@MainActivity, CreateClientActivity::class.java))
             R.id.nav_gallery -> this@MainActivity.startActivity(Intent(this@MainActivity, SelectClientActivity::class.java))
             R.id.nav_slideshow -> this@MainActivity.startActivity(Intent(this@MainActivity, TotalReportActivity::class.java))
+            R.id.nav_vegetable -> this@MainActivity.startActivity(Intent(this@MainActivity, CreateVegetableActivity::class.java))
         }
         return true
     }
