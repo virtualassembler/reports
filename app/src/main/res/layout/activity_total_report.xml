@@ -50,7 +50,8 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <Button
                 android:onClick="makeAndSharePDF"
                 android:layout_width="wrap_content"
@@ -59,6 +60,21 @@
                 android:layout_marginTop="38dp"
                 android:text="@string/pdf_go"
                 tools:ignore="OnClick" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="YYYY"
+                android:id="@+id/editTextYear"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="MM"
+                android:id="@+id/editTextMonth"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="dd"
+                android:id="@+id/editTextDay"/>
             <!--
             <EditText
                 android:layout_width="wrap_content"

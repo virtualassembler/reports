@@ -49,42 +49,17 @@ public class TotalReportActivity extends Activity implements Runnable {
         DateHelper dateHelper = new DateHelper();
         TextView textViewTitle = (TextView)findViewById(R.id.textViewTitle);
         textViewTitle.setText("Pedidos del dia "+dateHelper.getDayName().toUpperCase()+", "+ dateHelper.getDay()+" "+dateHelper.getMonth()+" "+dateHelper.getYear()+" ");
-        /*
-        Bundle bundle = getIntent().getExtras();
-        //TextView textViewConsecutive = (TextView)findViewById(R.id.textViewConsecutive);
-        TextView textViewClientName = (TextView)findViewById(R.id.textViewClientName);
-        textViewTotal = (TextView)findViewById(R.id.textViewTotal);
-        if(bundle.getString("billId")!= null) {
-            String billId = bundle.getString("billId");
-            //Toast.makeText(this,"id bill: "+bundle.getString("billId"),Toast.LENGTH_LONG).show();
-            //textViewConsecutive.setText(""+billId);
-            //String nameClient = TotalizerDatabase.Companion.getInstance(this).getBillDAO().getClientNameByBillId(billId);
-            String nameClient = TotalizerDatabase.Companion.getInstance(this).getBillDAO().getClientNameByBillId(billId);
-            textViewClientName.setText("\u0020\u0020"+nameClient);
-            //String d = TotalizerDatabase.Companion.getInstance(this).getVegetableDAO().getVegetableList().toString();
-            //String d2 = TotalizerDatabase.Companion.getInstance(this).getVegetableDAO().getVegetableList().toString();
-        }
-        */
+        TextView textView = (TextView)findViewById(R.id.textViewTitle);
+        setLinearLayout(dateHelper.getYear(),dateHelper.getMonth(),dateHelper.getDay());
+    }
 
+    private void setLinearLayout(int year, int month, int day) {
         LinearLayout linearLayout = findViewById(R.id.linearLayoutVegetableList2);
-        //Create list
-        //List<VegetableDataType> vegetableList = new ArrayList<>();
-        //vegetableList = VegetableListKt.getDefaultVegetableList();
-        Date fecha = Calendar.getInstance().getTime();
-        long startDate = fecha.getTime();
-        //Long date = System.currentTimeMillis();
         List<BillDataType> vegetableList = new ArrayList<>();
-//        if(vegetableList.isEmpty()){
-//            Toast.makeText(this,"No hay reportes",Toast.LENGTH_LONG).show();
-//            finish();
-//        }
-        //vegetableList = TotalizerDatabase.Companion.getInstance(this).getBillDAO().getBillList();
-        List<SelectedVegetableDataType> selectedVegetableList = new ArrayList<>();
-        selectedVegetableList = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getSelectedVegetableList();
-        //int cant = selectedVegetableList.size();
-        //List<BillVegetableDataType> registros = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getBillVegetableList();
-        int reg = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getBillVegetableList().size();
-        // Create TextView programmatically.
+        List<SelectedVegetableDataType> todaySelectedVegetableList = new ArrayList<>();
+        if(todaySelectedVegetableList.isEmpty()){Toast.makeText(this,"No hay reportes",Toast.LENGTH_LONG).show(); finish(); }
+        todaySelectedVegetableList = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getTodaySelectedVegetableList(year,month,day);
+        Log.e("#21","Cantidad de items vegetable_list de hoy: "+todaySelectedVegetableList.size());
         TextView textView = new TextView(this);
         textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         textView.setGravity(Gravity.LEFT);
@@ -92,7 +67,7 @@ public class TotalReportActivity extends Activity implements Runnable {
         String items = "";
         int price = 0;
         int total = 0;
-        for(SelectedVegetableDataType selectedVegetable : selectedVegetableList){
+        for(SelectedVegetableDataType selectedVegetable : todaySelectedVegetableList){
             if(selectedVegetable.isUnit() == 1){
                 price = (int)(Math.round(selectedVegetable.getPrice()));
             }else{

@@ -28,6 +28,15 @@ interface BillVegetableDao {
             "WHERE bill_vegetable.id = 1")
     fun getSelectedVegetableList(): List<SelectedVegetableDataType>
 
+    @Query("SELECT * FROM bill_vegetable " +
+            "JOIN vegetable ON bill_vegetable.vegetableId = vegetable.id " +
+            "JOIN bill ON bill_vegetable.billId = bill.id " +
+            "WHERE bill_vegetable.id = 1" +
+            " AND bill.year = :year" +
+            " AND bill.month = :month" +
+            " AND bill.day = :day ")
+    fun getTodaySelectedVegetableList(year:Int,month:Int,day:Int): List<SelectedVegetableDataType>
+
 //    @Query("SELECT * FROM bill_vegetable JOIN vegetable ON bill_vegetable.vegetableId = vegetable.id WHERE bill_vegetable.id = 1")
 //    fun getSelectedVegetableList(): List<SelectedVegetableDataType>
 
