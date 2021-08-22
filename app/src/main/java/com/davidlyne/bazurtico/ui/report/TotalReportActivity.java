@@ -27,23 +27,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.davidlyne.bazurtico.R;
 import com.davidlyne.bazurtico.data.local.BillDataType;
 import com.davidlyne.bazurtico.data.local.BillVegetableDataType;
 import com.davidlyne.bazurtico.data.local.SelectedVegetableDataType;
 import com.davidlyne.bazurtico.data.local.TotalizerDatabase;
+import com.davidlyne.bazurtico.util.DateHelper;
 
 public class TotalReportActivity extends Activity implements Runnable {
 
     private Intent mShareIntent;
 
     private OutputStream os;
-    TextView textViewTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_total_report);
+        DateHelper dateHelper = new DateHelper();
+        TextView textViewTitle = (TextView)findViewById(R.id.textViewTitle);
+        textViewTitle.setText("Pedidos del dia "+dateHelper.getDayName().toUpperCase()+", "+ dateHelper.getDay()+" "+dateHelper.getMonth()+" "+dateHelper.getYear()+" ");
         /*
         Bundle bundle = getIntent().getExtras();
         //TextView textViewConsecutive = (TextView)findViewById(R.id.textViewConsecutive);
@@ -69,11 +74,15 @@ public class TotalReportActivity extends Activity implements Runnable {
         long startDate = fecha.getTime();
         //Long date = System.currentTimeMillis();
         List<BillDataType> vegetableList = new ArrayList<>();
-        vegetableList = TotalizerDatabase.Companion.getInstance(this).getBillDAO().getBillList();
+//        if(vegetableList.isEmpty()){
+//            Toast.makeText(this,"No hay reportes",Toast.LENGTH_LONG).show();
+//            finish();
+//        }
+        //vegetableList = TotalizerDatabase.Companion.getInstance(this).getBillDAO().getBillList();
         List<SelectedVegetableDataType> selectedVegetableList = new ArrayList<>();
         selectedVegetableList = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getSelectedVegetableList();
-        int cant = selectedVegetableList.size();
-        List<BillVegetableDataType> registros = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getBillVegetableList();
+        //int cant = selectedVegetableList.size();
+        //List<BillVegetableDataType> registros = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getBillVegetableList();
         int reg = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getBillVegetableList().size();
         // Create TextView programmatically.
         TextView textView = new TextView(this);
@@ -83,14 +92,14 @@ public class TotalReportActivity extends Activity implements Runnable {
         String items = "";
         int price = 0;
         int total = 0;
-        for(SelectedVegetableDataType vegetable : selectedVegetableList){
-            if(vegetable.isUnit() == 1){
-                price = (int)(Math.round(vegetable.getPrice()));
+        for(SelectedVegetableDataType selectedVegetable : selectedVegetableList){
+            if(selectedVegetable.isUnit() == 1){
+                price = (int)(Math.round(selectedVegetable.getPrice()));
             }else{
-                price = (int)(Math.round(vegetable.getPrice()*1000));
+                price = (int)(Math.round(selectedVegetable.getPrice()*1000));
             }
             total = total+price;
-            items = items+vegetable.getBillId()+" \u0020\u0020 "+vegetable.getName().toString()+" \u0020\u0020\u0020\u0020\u0020 "+price+"\n \u0020\u0020";
+            items = items+selectedVegetable.getBillId()+" \u0020\u0020 "+selectedVegetable.getName().toString()+" \u0020\u0020\u0020\u0020\u0020 "+price+"\n \u0020\u0020";
         }
         textView.setText(items);
         textView.setOnClickListener(new View.OnClickListener() {

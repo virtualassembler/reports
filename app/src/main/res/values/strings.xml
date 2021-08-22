@@ -20,5 +20,6 @@
     <string name="pdf_go">Save And Share</string>
     <string name="consecutive">consecutive</string>
     <string name="client">Client</string>
+    <string name="pedidos">Pedidos</string>
 
 </resources>

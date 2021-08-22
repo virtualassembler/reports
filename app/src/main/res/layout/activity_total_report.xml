@@ -21,12 +21,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="300dp"
                     android:layout_height="24dp"
-                    android:text="@string/client"
+                    android:text="@string/pedidos"
                     android:textStyle="bold"
-                    android:textSize="8sp"
-                    android:id="@+id/textViewClientName">
+                    android:textSize="9sp"
+                    android:id="@+id/textViewTitle">
                 </TextView>
             </LinearLayout>
             <LinearLayout

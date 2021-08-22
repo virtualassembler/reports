@@ -8,13 +8,27 @@ import androidx.room.Update
 /**
  * Dataclass
  *
- * data class for vegetable
- *
  * @author david.lyne
  */
 
 @Entity(tableName = "selected_vegetable")
 data class SelectedVegetableDataType(
+        @ColumnInfo(name = "clientId")
+        var clientId: Int,
+        @ColumnInfo(name = "state")
+        var state: Int,
+        @ColumnInfo(name = "year")
+        var year: Int,
+        @ColumnInfo(name = "month")
+        var month: Int,
+        @ColumnInfo(name = "day")
+        var day: Int,
+        @ColumnInfo(name = "day_name")
+        var day_name: String,
+        @ColumnInfo(name = "created_at")
+        var createdAt: Long,
+        @ColumnInfo(name = "modified_at")
+        var modifiedAt: Long,
         @ColumnInfo(name = "name")
         var name: String?,
         @ColumnInfo(name = "price")

@@ -22,7 +22,10 @@ interface BillVegetableDao {
     @Query("SELECT * FROM bill_vegetable")
     fun getBillVegetableList(): List<BillVegetableDataType>
 
-    @Query("SELECT * FROM bill_vegetable JOIN vegetable ON bill_vegetable.vegetableId = vegetable.id WHERE bill_vegetable.id = 1")
+    @Query("SELECT * FROM bill_vegetable " +
+            "JOIN vegetable ON bill_vegetable.vegetableId = vegetable.id " +
+            "JOIN bill ON bill_vegetable.billId = bill.id " +
+            "WHERE bill_vegetable.id = 1")
     fun getSelectedVegetableList(): List<SelectedVegetableDataType>
 
 //    @Query("SELECT * FROM bill_vegetable JOIN vegetable ON bill_vegetable.vegetableId = vegetable.id WHERE bill_vegetable.id = 1")
