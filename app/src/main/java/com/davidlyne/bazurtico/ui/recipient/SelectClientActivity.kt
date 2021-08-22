@@ -1,9 +1,9 @@
 package com.davidlyne.bazurtico.ui.recipient
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -15,9 +15,6 @@ import com.davidlyne.bazurtico.repository.ClientRepository
 import com.davidlyne.bazurtico.ui.client.ClientEvents
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_select_client.*
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
 
 class SelectClientActivity : ClientEvents, AppCompatActivity() {
@@ -38,7 +35,10 @@ class SelectClientActivity : ClientEvents, AppCompatActivity() {
         clientListAdapter = ClientListAdapter(this)
         gridLayoutManager = GridLayoutManager(this, 2)
         linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        staggeredGridLayoutManager = StaggeredGridLayoutManager(
+            2,
+            StaggeredGridLayoutManager.VERTICAL
+        )
         recyclerView.layoutManager = gridLayoutManager
         recyclerView.adapter = clientListAdapter
         clientRepository = ClientRepository(this)
@@ -62,11 +62,43 @@ class SelectClientActivity : ClientEvents, AppCompatActivity() {
 
     override fun onItemClicked(clientDataType: ClientDataType) {
         val intent = Intent(this, SelectVegetableActivity::class.java)
-        Log.e("error001",""+clientDataType.id)
+        Log.e("error001", "" + clientDataType.id)
         var billId = TotalizerDatabase.getInstance(this)!!.getBillDAO().getLastBillId()
-        Log.e("IDde la ultima bill",""+billId)
-        var bill: BillDataType = BillDataType(clientDataType.id,2,System.currentTimeMillis(),System.currentTimeMillis())
+        Log.e("IDde la ultima bill", "" + billId)
+        var bill: BillDataType = BillDataType(clientDataType.id,2,getYear(),getMonth(),getDay(),getDayName(),System.currentTimeMillis(),System.currentTimeMillis())
         TotalizerDatabase.getInstance(this)!!.getBillDAO().insertBill(bill)
+        Log.e("hhhhh", "" + TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillList())
         startActivity(intent)
+    }
+
+    fun getYear(): Int {
+        val year = android.text.format.DateFormat.format("yyyy", Date()).toString().toInt()
+        if(year > 0){
+            return year
+        }else{
+            return 0
+        }
+    }
+
+    fun getMonth(): Int {
+        val year = android.text.format.DateFormat.format("MM", Date()).toString().toInt()
+        if(year > 0){
+            return year
+        }else{
+            return 0
+        }
+    }
+
+    fun getDay(): Int {
+        val year = android.text.format.DateFormat.format("dd", Date()).toString().toInt()
+        if(year > 0){
+            return year
+        }else{
+            return 0
+        }
+    }
+
+    fun getDayName(): String {
+        return android.text.format.DateFormat.format("EEEE", Date()).toString()
     }
 }

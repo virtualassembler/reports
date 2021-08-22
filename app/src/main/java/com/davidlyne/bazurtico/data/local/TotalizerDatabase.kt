@@ -37,17 +37,21 @@ abstract class TotalizerDatabase : RoomDatabase() {
 
         private var instance: TotalizerDatabase? = null
 
-        val MIGRATION_1_2 = object : Migration(24, 25) {
+        val MIGRATION = object : Migration(27, 28) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 //Integer values
                 database.execSQL(
-                    "ALTER TABLE vegetable ADD COLUMN isUnit INTEGER NOT NULL DEFAULT (0)"
+                    "ALTER TABLE bill ADD COLUMN year INTEGER NOT NULL DEFAULT (0)"
                 )
-//                //String values
-//                database.execSQL(
-//                    "ALTER TABLE ProjectListingResponse "
-//                            + " ADD COLUMN dummy2 TEXT default 0 NOT NULL"
-//                );
+                database.execSQL(
+                    "ALTER TABLE bill ADD COLUMN month INTEGER NOT NULL DEFAULT (0)"
+                )
+                database.execSQL(
+                        "ALTER TABLE bill ADD COLUMN day INTEGER NOT NULL DEFAULT (0)"
+                        )
+                database.execSQL(
+                    "ALTER TABLE bill ADD COLUMN day_name STRING NOT NULL DEFAULT '' "
+                )
             }
         }
 
@@ -56,7 +60,7 @@ abstract class TotalizerDatabase : RoomDatabase() {
                 synchronized(TotalizerDatabase::class) {
                     instance = Room.databaseBuilder(context.applicationContext,TotalizerDatabase::class.java, "bazurtico_db")
                         .fallbackToDestructiveMigration()
-                        .addMigrations(MIGRATION_1_2)
+                        .addMigrations(MIGRATION)
                         .addCallback(roomCallback)
                         .allowMainThreadQueries()
                         .build()

@@ -16,8 +16,9 @@ import kotlinx.android.synthetic.main.list_item.view.*
  *
  * Provides access to the SoccerLeague data items, makes a View for each SoccerLeague item
  *
- * @author david.mazo
+ * @author david.lyne
  */
+
 class ClientListAdapter(private val clientEvents: ClientEvents) : RecyclerView.Adapter<ClientListAdapter.ViewHolder>() {
 
     private var listClient: List<ClientDataType> = listOf()

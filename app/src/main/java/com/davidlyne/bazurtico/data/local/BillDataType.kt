@@ -19,6 +19,14 @@ data class BillDataType(
         var clientId: Int,
         @ColumnInfo(name = "state")
         var state: Int,
+        @ColumnInfo(name = "year")
+        var year: Int,
+        @ColumnInfo(name = "month")
+        var month: Int,
+        @ColumnInfo(name = "day")
+        var day: Int,
+        @ColumnInfo(name = "day_name")
+        var day_name: String,
         @ColumnInfo(name = "created_at") var createdAt: Long,
         @ColumnInfo(name = "modified_at") var modifiedAt: Long
 ){

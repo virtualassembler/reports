@@ -24,6 +24,7 @@ import com.davidlyne.bazurtico.ui.recipient.SelectVegetableActivity
 import com.davidlyne.bazurtico.ui.recipient.SelectClientActivity
 import com.davidlyne.bazurtico.ui.report.TotalReportActivity
 import kotlinx.android.synthetic.main.activity_create_client.*
+import java.util.*
 
 class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
 
@@ -69,12 +70,12 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
 
         //Log.e("#000",""+TotalizerDatabase.PopulateDbAsyncTask(TotalizerDatabase.getTotalizerDatabase(applicationContext)))
         //Log.e("#001",""+TotalizerDatabase.getInstance(this)!!.getVegetableDAO().getVegetableList())
-        Log.e("#002","eee"+TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList())
+        Log.e("#002","eee "+TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList())
+        Log.e("#002","eee "+TotalizerDatabase.getInstance(this)!!.getBillDAO().getBillList())
         Log.e("#003","test")
         //Log.e("#002","eee"+clientList2)
         clearDatabase()
         //this@MainActivity.startActivity(Intent(this@MainActivity, PdfActivity::class.java))
-
     }
 
     //ADDED
