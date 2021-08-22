@@ -5,8 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
@@ -28,12 +26,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.davidlyne.bazurtico.R;
-import com.davidlyne.bazurtico.data.local.BillDataType;
-import com.davidlyne.bazurtico.data.local.BillVegetableDataType;
 import com.davidlyne.bazurtico.data.local.SelectedVegetableDataType;
 import com.davidlyne.bazurtico.data.local.TotalizerDatabase;
+import com.davidlyne.bazurtico.data.local.VegetableDataType;
 import com.davidlyne.bazurtico.util.DateHelper;
 
 public class TotalReportActivity extends Activity implements Runnable {
@@ -55,39 +51,51 @@ public class TotalReportActivity extends Activity implements Runnable {
 
     private void setLinearLayout(int year, int month, int day) {
         LinearLayout linearLayout = findViewById(R.id.linearLayoutVegetableList2);
-        List<BillDataType> vegetableList = new ArrayList<>();
         List<SelectedVegetableDataType> todaySelectedVegetableList = new ArrayList<>();
-        if(todaySelectedVegetableList.isEmpty()){Toast.makeText(this,"No hay reportes",Toast.LENGTH_LONG).show(); finish(); }
         todaySelectedVegetableList = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getTodaySelectedVegetableList(year,month,day);
+        if(todaySelectedVegetableList.isEmpty()){Toast.makeText(this,"No hay reportes",Toast.LENGTH_LONG).show(); finish(); }
         Log.e("#21","Cantidad de items vegetable_list de hoy: "+todaySelectedVegetableList.size());
         TextView textView = new TextView(this);
         textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         textView.setGravity(Gravity.LEFT);
         textView.setTextSize(8);
         String items = "";
-        int price = 0;
-        int total = 0;
-        for(SelectedVegetableDataType selectedVegetable : todaySelectedVegetableList){
-            if(selectedVegetable.isUnit() == 1){
-                price = (int)(Math.round(selectedVegetable.getPrice()));
-            }else{
-                price = (int)(Math.round(selectedVegetable.getPrice()*1000));
+        //int price = 0;
+        //int total = 0;
+        int vegetableId;
+        int vegetableAmmount = 0;
+        List<VegetableDataType> vegetableList = new ArrayList<>();
+        vegetableList = TotalizerDatabase.Companion.getInstance(this).getVegetableDAO().getVegetableList();
+        for(VegetableDataType vegetable : vegetableList) {
+            vegetableId = vegetable.getId();
+            for (SelectedVegetableDataType selectedVegetable : todaySelectedVegetableList) {
+                if(vegetableId == selectedVegetable.getVegetableId()){
+                    vegetableAmmount = vegetableAmmount+selectedVegetable.getGrams();
+                    /*
+                    if (selectedVegetable.isUnit() == 1) {
+                        price = (int) (Math.round(selectedVegetable.getPrice()));
+                    } else {
+                        price = (int) (Math.round(selectedVegetable.getPrice() * 1000));
+                    }
+                    total = total + price;
+                    */
+                    items = items + "\n \u0020\u0020 Cant: "+vegetableAmmount+" \u0020\u0020 "+selectedVegetable.getName()+" \u0020\u0020\u0020\u0020\u0020 "+"\n \u0020\u0020";
+                }
             }
-            total = total+price;
-            items = items+selectedVegetable.getBillId()+" \u0020\u0020 "+selectedVegetable.getName().toString()+" \u0020\u0020\u0020\u0020\u0020 "+price+"\n \u0020\u0020";
         }
-        textView.setText(items);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("Sociales","sociales");
+        if (vegetableAmmount > 0) {
+            textView.setText(items);
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e("Sociales","sociales");
+                }
+            });
+            // Add TextView to LinearLayout
+            if (linearLayout != null) {
+                linearLayout.addView(textView);
             }
-        });
-        // Add TextView to LinearLayout
-        if (linearLayout != null) {
-            linearLayout.addView(textView);
         }
-        //textViewTotal.setText("Total: "+total);
     }
 
     /** PDF Gen should run in own thread to not slow the GUI */
@@ -167,11 +175,8 @@ public class TotalReportActivity extends Activity implements Runnable {
 package com.davidlyne.bazurtico.ui.report;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
 import com.davidlyne.bazurtico.R;
-
 
 public class TotalReportActivity extends AppCompatActivity {
 

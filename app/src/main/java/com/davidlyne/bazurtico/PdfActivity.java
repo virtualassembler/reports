@@ -63,7 +63,7 @@ public class PdfActivity extends Activity implements Runnable {
         //List<VegetableDataType> vegetableList = new ArrayList<>();
         //vegetableList = VegetableListKt.getDefaultVegetableList();
         List<SelectedVegetableDataType> selectedVegetableList = new ArrayList<>();
-        selectedVegetableList = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getSelectedVegetableList();
+        selectedVegetableList = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getSelectedVegetableList(bundle.getString("billId"));
         int cant = selectedVegetableList.size();
         List<BillVegetableDataType> registros = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getBillVegetableList();
         int reg = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getBillVegetableList().size();
