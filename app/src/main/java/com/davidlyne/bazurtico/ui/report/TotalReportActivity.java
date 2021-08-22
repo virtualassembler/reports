@@ -49,7 +49,6 @@ public class TotalReportActivity extends Activity implements Runnable {
         DateHelper dateHelper = new DateHelper();
         TextView textViewTitle = (TextView)findViewById(R.id.textViewTitle);
         textViewTitle.setText("Pedidos del dia "+dateHelper.getDayName().toUpperCase()+", "+ dateHelper.getDay()+" "+dateHelper.getMonth()+" "+dateHelper.getYear()+" ");
-        //TextView textView = (TextView)findViewById(R.id.textViewTitle);
         setLinearLayout(dateHelper.getYear(),dateHelper.getMonth(),dateHelper.getDay());
         EditText editTextYear = (EditText) findViewById(R.id.editTextYear);
         EditText editTextMonth = (EditText) findViewById(R.id.editTextMonth);
@@ -83,13 +82,9 @@ public class TotalReportActivity extends Activity implements Runnable {
         textView.setGravity(Gravity.LEFT);
         textView.setTextSize(8);
         String items = "";
-        //int price = 0;
-        //int total = 0;
         int vegetableId;
         int vegetableAmmount = 0;
-        int myInt = 1;
         List<Integer> deatomizedVegetable = new ArrayList<Integer>();
-
         List<VegetableDataType> vegetableList = new ArrayList<>();
         vegetableList = TotalizerDatabase.Companion.getInstance(this).getVegetableDAO().getVegetableList();
         for(VegetableDataType vegetable : vegetableList) {
@@ -98,15 +93,7 @@ public class TotalReportActivity extends Activity implements Runnable {
                 if(vegetableId == selectedVegetable.getVegetableId()){
                     vegetableAmmount = vegetableAmmount+selectedVegetable.getGrams();
                     deatomizedVegetable.add(selectedVegetable.getGrams());
-                    /*
-                    if (selectedVegetable.isUnit() == 1) {
-                        price = (int) (Math.round(selectedVegetable.getPrice()));
-                    } else {
-                        price = (int) (Math.round(selectedVegetable.getPrice() * 1000));
-                    }
-                    total = total + price;
-                    */
-                    items = items +"\u0020\u0020 "+selectedVegetable.getName()+" \u0020\u0020\u0020\u0020\u0020 "+vegetableAmmount+" \u0020\u0020\u0020\u0020\u0020\u0020\u0020"+deatomizedVegetable.toString()+"\n";
+                    items = items +"\u0020\u0020 "+vegetableAmmount+"\u0020\u0020\u0020"+selectedVegetable.getName()+"\u0020\u0020\u0020\u0020"+deatomizedVegetable.toString()+"\n";
                 }
             }
         }
@@ -137,13 +124,13 @@ public class TotalReportActivity extends Activity implements Runnable {
         PrintAttributes printAttrs = new PrintAttributes.Builder().
                 setColorMode(PrintAttributes.COLOR_MODE_COLOR).
                 setMediaSize(PrintAttributes.MediaSize.NA_LETTER).
-                setResolution(new Resolution("zooey", PRINT_SERVICE, 300, 500)).
+                setResolution(new Resolution("zooey", PRINT_SERVICE, 400, 600)).
                 setMinMargins(Margins.NO_MARGINS).
                 build();
         PdfDocument document = new PrintedPdfDocument(this, printAttrs);
 
         // crate a page description
-        PageInfo pageInfo = new PageInfo.Builder(300, 500, 1).create();
+        PageInfo pageInfo = new PageInfo.Builder(400, 600, 1).create();
 
         // create a new page from the PageInfo
         Page page = document.startPage(pageInfo);
