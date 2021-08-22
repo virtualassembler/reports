@@ -63,6 +63,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
                 android:hint="YYYY"
                 android:id="@+id/editTextYear"/>
             <EditText
@@ -75,6 +76,13 @@
                 android:layout_height="wrap_content"
                 android:hint="dd"
                 android:id="@+id/editTextDay"/>
+            <Button
+                android:id="@+id/buttonGenerateReport"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="58dp"
+                android:layout_marginTop="4dp"
+                android:text="generar reporte" />
             <!--
             <EditText
                 android:layout_width="wrap_content"

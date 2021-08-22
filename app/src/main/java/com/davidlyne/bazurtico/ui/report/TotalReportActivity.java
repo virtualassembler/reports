@@ -23,6 +23,8 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +33,8 @@ import com.davidlyne.bazurtico.data.local.SelectedVegetableDataType;
 import com.davidlyne.bazurtico.data.local.TotalizerDatabase;
 import com.davidlyne.bazurtico.data.local.VegetableDataType;
 import com.davidlyne.bazurtico.util.DateHelper;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 public class TotalReportActivity extends Activity implements Runnable {
 
@@ -45,15 +49,34 @@ public class TotalReportActivity extends Activity implements Runnable {
         DateHelper dateHelper = new DateHelper();
         TextView textViewTitle = (TextView)findViewById(R.id.textViewTitle);
         textViewTitle.setText("Pedidos del dia "+dateHelper.getDayName().toUpperCase()+", "+ dateHelper.getDay()+" "+dateHelper.getMonth()+" "+dateHelper.getYear()+" ");
-        TextView textView = (TextView)findViewById(R.id.textViewTitle);
+        //TextView textView = (TextView)findViewById(R.id.textViewTitle);
         setLinearLayout(dateHelper.getYear(),dateHelper.getMonth(),dateHelper.getDay());
+        EditText editTextYear = (EditText) findViewById(R.id.editTextYear);
+        EditText editTextMonth = (EditText) findViewById(R.id.editTextMonth);
+        EditText editTextDay = (EditText) findViewById(R.id.editTextDay);
+        Button buttonGenerateReport = (Button)findViewById(R.id.buttonGenerateReport);
+        buttonGenerateReport.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(editTextYear.getText().toString().isEmpty() && editTextMonth.getText().toString().isEmpty() && editTextDay.getText().toString().isEmpty()){
+                    Toast.makeText(TotalReportActivity.this,"Faltan Datos Importantes ",Toast.LENGTH_LONG).show();
+                }else{
+                    int year = new Integer(editTextYear.getText().toString());
+                    int month = new Integer(editTextMonth.getText().toString());
+                    int day = new Integer(editTextDay.getText().toString());
+                    if(year>0 && month> 0 && day>0){
+                        setLinearLayout(year,month,day);
+                        textViewTitle.setText("Pedidos del dia: "+ day+" "+month+" "+year+" ");
+                    }
+                }
+            }
+        });
     }
 
     private void setLinearLayout(int year, int month, int day) {
         LinearLayout linearLayout = findViewById(R.id.linearLayoutVegetableList2);
         List<SelectedVegetableDataType> todaySelectedVegetableList = new ArrayList<>();
         todaySelectedVegetableList = TotalizerDatabase.Companion.getInstance(this).getBillVegetableDAO().getTodaySelectedVegetableList(year,month,day);
-        if(todaySelectedVegetableList.isEmpty()){Toast.makeText(this,"No hay reportes",Toast.LENGTH_LONG).show(); finish(); }
+        if(todaySelectedVegetableList.isEmpty()){Toast.makeText(this,"No hay reportes", LENGTH_LONG).show(); finish(); }
         Log.e("#21","Cantidad de items vegetable_list de hoy: "+todaySelectedVegetableList.size());
         TextView textView = new TextView(this);
         textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
