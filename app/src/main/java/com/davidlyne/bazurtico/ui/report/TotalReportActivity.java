@@ -106,7 +106,7 @@ public class TotalReportActivity extends Activity implements Runnable {
                     }
                     total = total + price;
                     */
-                    items = items + "\n \n \u0020\u0020 "+selectedVegetable.getName()+" \u0020\u0020\u0020\u0020\u0020 "+vegetableAmmount+"\n \u0020\u0020"+deatomizedVegetable.toString();
+                    items = items +"\u0020\u0020 "+selectedVegetable.getName()+" \u0020\u0020\u0020\u0020\u0020 "+vegetableAmmount+" \u0020\u0020\u0020\u0020\u0020\u0020\u0020"+deatomizedVegetable.toString()+"\n";
                 }
             }
         }
