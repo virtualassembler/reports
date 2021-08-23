@@ -65,16 +65,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
                 android:hint="YYYY"
+                android:inputType="number"
                 android:id="@+id/editTextYear"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="MM"
+                android:inputType="number"
                 android:id="@+id/editTextMonth"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="dd"
+                android:inputType="number"
                 android:id="@+id/editTextDay"/>
             <Button
                 android:id="@+id/buttonGenerateReport"

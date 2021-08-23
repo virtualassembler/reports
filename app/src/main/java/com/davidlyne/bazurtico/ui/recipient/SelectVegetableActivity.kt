@@ -12,7 +12,7 @@ import com.davidlyne.bazurtico.PdfActivity
 import com.davidlyne.bazurtico.R
 import com.davidlyne.bazurtico.data.local.*
 import com.davidlyne.bazurtico.repository.VegetableRepository
-import com.davidlyne.bazurtico.ui.client.VegetableEvents
+import com.davidlyne.bazurtico.ui.vegetable.VegetableEvents
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_select_vegetable.*
 

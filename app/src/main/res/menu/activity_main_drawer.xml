@@ -20,5 +20,9 @@
             android:id="@+id/nav_vegetable"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_vegetable" />
+        <item
+            android:id="@+id/nav_create_vegetable"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_create_vegetable" />
     </group>
 </menu>

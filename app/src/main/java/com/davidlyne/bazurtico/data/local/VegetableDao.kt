@@ -26,7 +26,7 @@ interface VegetableDao {
     fun getSelectedVegetableList(): List<VegetableDataType>
 
     @Query("SELECT * FROM vegetable WHERE vegetable.id=:id")
-    fun getVegetableDetail(id: Int): VegetableDataType
+    fun getVegetableById(id: String): VegetableDataType
 
     @Query("DELETE FROM vegetable")
     fun deleteAllVegetables()

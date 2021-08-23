@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.davidlyne.bazurtico.R
 import com.davidlyne.bazurtico.data.local.VegetableDataType
-import com.davidlyne.bazurtico.ui.client.VegetableEvents
+import com.davidlyne.bazurtico.ui.vegetable.VegetableEvents
 import kotlinx.android.synthetic.main.list_item.view.*
 
 /**

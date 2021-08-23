@@ -16,7 +16,6 @@ import com.davidlyne.bazurtico.ui.client.ClientEvents
 import com.davidlyne.bazurtico.util.DateHelper
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_select_client.*
-import java.util.*
 
 class SelectClientActivity : ClientEvents, AppCompatActivity() {
 
@@ -40,8 +39,8 @@ class SelectClientActivity : ClientEvents, AppCompatActivity() {
             2,
             StaggeredGridLayoutManager.VERTICAL
         )
-        recyclerView.layoutManager = gridLayoutManager
-        recyclerView.adapter = clientListAdapter
+        recyclerViewClientList.layoutManager = gridLayoutManager
+        recyclerViewClientList.adapter = clientListAdapter
         clientRepository = ClientRepository(this)
         //soccerLeagueListAdapter.addAll(clientRepository.requestTeamReviewList("algo"))
         clientListAdapter.addAll(ClientRepository(applicationContext).requestClientList())

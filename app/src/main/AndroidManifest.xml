@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.vegetable.CreateVegetableActivity"></activity>
+        <activity android:name=".ui.vegetable.EditVegetableActivity"></activity>
+        <activity android:name=".ui.vegetable.VegetableListActivity" />
+        <activity android:name=".ui.vegetable.CreateVegetableActivity" />
         <activity android:name=".ui.report.TotalReportActivity" />
         <activity android:name=".PdfActivity" />
         <activity android:name=".ui.recipient.ClientDetailActivity" />

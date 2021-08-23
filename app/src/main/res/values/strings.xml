@@ -12,6 +12,7 @@
     <string name="menu_gallery">Product</string>
     <string name="menu_slideshow">Report</string>
     <string name="menu_vegetable">Vegetable</string>
+    <string name="menu_create_vegetable">Create vegetable</string>
     <string name="image_item">image Item</string>
     <string name="original_name">Name</string>
     <string name="error_tag">Error tag</string>

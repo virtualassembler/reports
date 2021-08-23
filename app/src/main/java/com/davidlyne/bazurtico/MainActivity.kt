@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -18,12 +17,11 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.davidlyne.bazurtico.data.local.TotalizerDatabase
-import com.davidlyne.bazurtico.data.local.VegetableDataType
 import com.davidlyne.bazurtico.ui.client.CreateClientActivity
-import com.davidlyne.bazurtico.ui.recipient.SelectVegetableActivity
 import com.davidlyne.bazurtico.ui.recipient.SelectClientActivity
 import com.davidlyne.bazurtico.ui.report.TotalReportActivity
 import com.davidlyne.bazurtico.ui.vegetable.CreateVegetableActivity
+import com.davidlyne.bazurtico.ui.vegetable.VegetableListActivity
 import kotlinx.android.synthetic.main.activity_create_client.*
 import java.util.*
 
@@ -37,9 +35,6 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     //private val clientList: List<ClientDataType>  get() = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList()
     //private val clientList2: List<ClientDataType>  get() = TotalizerDatabase.getInstance(this)!!.getClientDAO().getClientList()
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -47,7 +42,6 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         Log.e("FFF",""+TotalizerDatabase.getInstance(this)!!.getVegetableDAO().getVegetableList())
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
@@ -84,7 +78,8 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
             R.id.nav_home -> this@MainActivity.startActivity(Intent(this@MainActivity, CreateClientActivity::class.java))
             R.id.nav_gallery -> this@MainActivity.startActivity(Intent(this@MainActivity, SelectClientActivity::class.java))
             R.id.nav_slideshow -> this@MainActivity.startActivity(Intent(this@MainActivity, TotalReportActivity::class.java))
-            R.id.nav_vegetable -> this@MainActivity.startActivity(Intent(this@MainActivity, CreateVegetableActivity::class.java))
+            R.id.nav_vegetable -> this@MainActivity.startActivity(Intent(this@MainActivity, VegetableListActivity::class.java))
+            R.id.nav_create_vegetable -> this@MainActivity.startActivity(Intent(this@MainActivity, CreateVegetableActivity::class.java))
         }
         return true
     }
@@ -118,5 +113,4 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
             TotalizerDatabase.getInstance(this)!!.getBillDAO().clearUnsavedBillList(idUnsavedBill.id)
         }
     }
-
 }

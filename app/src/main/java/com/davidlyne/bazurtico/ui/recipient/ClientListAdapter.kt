@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.davidlyne.bazurtico.R
 import com.davidlyne.bazurtico.data.local.ClientDataType
 import com.davidlyne.bazurtico.ui.client.ClientEvents
-import com.davidlyne.bazurtico.ui.client.VegetableEvents
 import kotlinx.android.synthetic.main.list_item.view.*
 
 /**
