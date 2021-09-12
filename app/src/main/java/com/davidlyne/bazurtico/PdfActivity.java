@@ -82,7 +82,7 @@ public class PdfActivity extends Activity implements Runnable {
                 price = (int)(Math.round(vegetable.getPrice()*1000));
             }
             total = total+price;
-            items = items+vegetable.getBillId()+" \u0020\u0020 "+vegetable.getName().toString()+" \u0020\u0020\u0020\u0020\u0020 "+price+"\n \u0020\u0020";
+            items = items+vegetable.getGrams()+" \u0020\u0020 "+vegetable.getName().toString()+" \u0020\u0020\u0020\u0020\u0020 "+price+"\n \u0020\u0020";
         }
         textView.setText(items);
         textView.setOnClickListener(new View.OnClickListener() {
