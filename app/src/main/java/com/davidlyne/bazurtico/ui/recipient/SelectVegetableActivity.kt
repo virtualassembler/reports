@@ -63,7 +63,7 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
     private fun setButtonAdd(){
         buttonAddVegetable.setOnClickListener {
             // Agrega este producto a la List de productos seleccionados
-            if(textViewSelectedVegetable.text.isNotEmpty() && editTextAmount.text.isNotEmpty() && editTextVegetablePrice.text.isNotEmpty()){
+            if(textViewSelectedVegetable.text.isNotEmpty() && editTextAmount.text.isNotEmpty()){
                 val billVegetable = BillVegetableDataType(selectedVegetable.id,bill.id,Integer.parseInt(editTextAmount.text.toString().trim()))
                 TotalizerDatabase.getInstance(this)!!.getBillVegetableDAO().insert(billVegetable)
                 Toast.makeText(applicationContext, "vegetable added ", Toast.LENGTH_LONG).show()
@@ -72,7 +72,7 @@ class SelectVegetableActivity : VegetableEvents,AppCompatActivity() {
                 //Clear Selected Vegetable UI fields
                 textViewSelectedVegetable.text = ""
                 editTextAmount.text.clear()
-                editTextVegetablePrice.text.clear()
+                //editTextVegetablePrice.text.clear()
             }else{
                 Toast.makeText(applicationContext, "El producto no se pudo agregar a la factura", Toast.LENGTH_LONG).show()
             }

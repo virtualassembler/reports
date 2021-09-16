@@ -25,7 +25,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.davidlyne.bazurtico.data.local.BillVegetableDataType;
 import com.davidlyne.bazurtico.data.local.SelectedVegetableDataType;
 import com.davidlyne.bazurtico.data.local.TotalizerDatabase;
@@ -77,9 +76,9 @@ public class PdfActivity extends Activity implements Runnable {
         int total = 0;
         for(SelectedVegetableDataType vegetable : selectedVegetableList){
             if(vegetable.isUnit() == 1){
-                price = (int)(Math.round(vegetable.getPrice()));
+                price = (int)(Math.round(vegetable.getGrams())) * (int)(Math.round(vegetable.getPrice()));
             }else{
-                price = (int)(Math.round(vegetable.getPrice()*1000));
+                price = (int)(Math.round(vegetable.getGrams())) * (int)(Math.round(vegetable.getPrice()));
             }
             total = total+price;
             items = items+vegetable.getGrams()+" \u0020\u0020 "+vegetable.getName().toString()+" \u0020\u0020\u0020\u0020\u0020 "+price+"\n \u0020\u0020";

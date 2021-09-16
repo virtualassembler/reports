@@ -1,9 +1,6 @@
 package com.davidlyne.bazurtico.data.local
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 /**
  * VegetableDao
@@ -17,6 +14,12 @@ import androidx.room.Query
 interface VegetableDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vegetableDataType: VegetableDataType)
+
+    //    @Update
+    //    suspend fun update(vegetable:VegetableDataType)
+
+    @Query("UPDATE vegetable SET name=:name, price=:price, isUnit=:isUnit WHERE vegetable.id=:id")
+    fun update(id:String,name:String,price:Double,isUnit:Int)
 
     @Query("SELECT * FROM vegetable")
     fun getVegetableList(): List<VegetableDataType>

@@ -97,6 +97,7 @@ public class TotalReportActivity extends Activity implements Runnable {
                 }
             }
         }
+        deatomizedVegetable.clear();
         if (vegetableAmmount > 0) {
             textView.setText(items);
             textView.setOnClickListener(new View.OnClickListener() {
