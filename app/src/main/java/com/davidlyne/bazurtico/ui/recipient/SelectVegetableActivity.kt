@@ -13,6 +13,7 @@ import com.davidlyne.bazurtico.R
 import com.davidlyne.bazurtico.data.local.*
 import com.davidlyne.bazurtico.repository.VegetableRepository
 import com.davidlyne.bazurtico.ui.vegetable.VegetableEvents
+import com.davidlyne.bazurtico.ui.vegetable.VegetableListAdapter
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_select_vegetable.*
 

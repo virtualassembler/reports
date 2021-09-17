@@ -10,7 +10,6 @@ import com.davidlyne.bazurtico.R
 import com.davidlyne.bazurtico.data.local.TotalizerDatabase
 import com.davidlyne.bazurtico.data.local.VegetableDataType
 import com.davidlyne.bazurtico.repository.ClientRepository
-import com.davidlyne.bazurtico.ui.recipient.VegetableListAdapter
 import kotlinx.android.synthetic.main.activity_vegetable_list.*
 
 class VegetableListActivity : VegetableEvents, AppCompatActivity() {

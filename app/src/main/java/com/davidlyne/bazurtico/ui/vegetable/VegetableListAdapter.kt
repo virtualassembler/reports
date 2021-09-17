@@ -1,4 +1,4 @@
-package com.davidlyne.bazurtico.ui.recipient
+package com.davidlyne.bazurtico.ui.vegetable
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.davidlyne.bazurtico.R
 import com.davidlyne.bazurtico.data.local.VegetableDataType
-import com.davidlyne.bazurtico.ui.vegetable.VegetableEvents
 import kotlinx.android.synthetic.main.list_item.view.*
 
 /**
@@ -41,6 +40,7 @@ class VegetableListAdapter(private val vegetableEvents: VegetableEvents) : Recyc
     class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         fun bindItem(vegetable: VegetableDataType,listener: VegetableEvents) {
             itemView.textViewName.text = vegetable.name
+            itemView.textViewPrice.text = (vegetable.price * 1000).toInt().toString()
             //itemView.textViewStadium.text = soccerLeague.telClient
             Glide.with(itemView)
                     .load("https://media.mercola.com/assets/images/foodfacts/lemon-nutrition-facts.jpg")
@@ -49,7 +49,6 @@ class VegetableListAdapter(private val vegetableEvents: VegetableEvents) : Recyc
                     .override(1000, 1000)
                     .into(itemView.imageViewTeamBadge)
             view.setOnClickListener { listener.onItemClicked(vegetable) }
-
         }
     }
 }
